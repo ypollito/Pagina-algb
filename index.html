@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La geometría de las ecuaciones lineales</title>
+  <style>
+    :root {
+      --bg-color: #090a0e;
+      --card-bg: #11131a;
+      --border-color: #1c202c;
+      --accent-blue: #4f7df3;
+      --accent-cyan: #18c5d9;
+      --accent-purple: #a855f7;
+      --accent-coral: #f06565;
+      --accent-green: #10b981;
+      --text-main: #f8fafc;
+      --text-muted: #8b94a5;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    html { scroll-behavior: smooth; background-color: var(--bg-color); color: var(--text-main); }
+
+    /* SECCIÓN 0: HERO (INICIO) */
+    .hero-section {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      background: radial-gradient(circle at center, #141724 0%, #090a0e 70%);
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .hero-tag {
+      font-size: 0.68rem;
+      letter-spacing: 2.5px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      font-family: monospace;
+      text-transform: uppercase;
+    }
+
+    .hero-title {
+      font-size: 3.1rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      max-width: 780px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.5;
+      margin-bottom: 32px;
+      max-width: 520px;
+    }
+
+    .hero-btn {
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+      color: #090a0e;
+      border: none;
+      padding: 11px 24px;
+      border-radius: 24px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s, opacity 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .hero-btn:hover {
+      transform: translateY(-2px);
+      opacity: 0.92;
+    }
+
+    /* SECCIONES GENERALES */
+    .exercise-section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 70px 24px;
+      max-width: 1120px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .exercise-grid {
+      display: grid;
+      grid-template-columns: 420px 1fr;
+      gap: 40px;
+      width: 100%;
+      align-items: center;
+    }
+
+    .left-col {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .sec-tag {
+      font-size: 0.68rem;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+      font-family: monospace;
+      margin-bottom: 6px;
+      text-transform: uppercase;
+    }
+
+    h2 {
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 12px;
+    }
+
+    .exercise-desc {
+      color: var(--text-muted);
+      font-size: 0.84rem;
+      line-height: 1.55;
+      margin-bottom: 8px;
+    }
+
+    .exercise-desc strong {
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    /* Tarjeta de controles */
+    .controls-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 14px;
+      padding: 20px;
+    }
+
+    .matrices-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+      font-family: monospace;
+    }
+
+    .matrix-label {
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .matrix-bracket {
+      display: inline-flex;
+      align-items: center;
+      font-size: 0.9rem;
+      gap: 8px;
+    }
+
+    .bracket-sym {
+      font-size: 1.9rem;
+      font-weight: 200;
+      color: #475569;
+      line-height: 1;
+    }
+
+    .matrix-vals {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px 12px;
+      text-align: right;
+    }
+
+    .vec-vals {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4px;
+      text-align: center;
+    }
+
+    /* Sliders */
+    .slider-group {
+      margin-bottom: 14px;
+    }
+    .slider-group:last-child {
+      margin-bottom: 0;
+    }
+
+    .slider-header {
+      display: flex;
+      justify-content: space-between;
+      font-family: monospace;
+      font-size: 0.78rem;
+      margin-bottom: 6px;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 5px;
+      border-radius: 3px;
+      background: #222736;
+      appearance: none;
+      outline: none;
+    }
+
+    .slider-blue::-webkit-slider-thumb { appearance: none; width: 13px; height: 13px; border-radius: 50%; background: var(--accent-blue); cursor: pointer; }
+    .slider-cyan::-webkit-slider-thumb { appearance: none; width: 13px; height: 13px; border-radius: 50%; background: var(--accent-cyan); cursor: pointer; }
+    .slider-purple::-webkit-slider-thumb { appearance: none; width: 13px; height: 13px; border-radius: 50%; background: var(--accent-purple); cursor: pointer; }
+
+    /* Inputs numéricos editables */
+    .editable-input {
+      background: #161a25;
+      border: 1px solid #2b3245;
+      color: var(--accent-cyan);
+      font-family: monospace;
+      font-size: 0.9rem;
+      width: 48px;
+      text-align: center;
+      border-radius: 6px;
+      padding: 4px;
+      outline: none;
+    }
+    .editable-input:focus {
+      border-color: var(--accent-cyan);
+    }
+
+    /* Botones */
+    .actions-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .btn-action {
+      background: #171a24;
+      border: 1px solid #262b3b;
+      color: var(--text-main);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .btn-action:hover {
+      background: #1f2433;
+      border-color: #3b4259;
+    }
+
+    /* Tarjeta de estado */
+    .status-card {
+      background: rgba(240, 101, 101, 0.08);
+      border: 1px solid rgba(240, 101, 101, 0.28);
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-family: monospace;
+      font-size: 0.8rem;
+      color: var(--accent-coral);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: 0.2s;
+    }
+
+    /* Canvas Wrapper */
+    .right-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .canvas-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 16px;
+      width: 100%;
+      max-width: 500px;
+      transition: border-color 0.25s;
+    }
+
+    canvas {
+      border-radius: 10px;
+      background: #0b0c10;
+      width: 100%;
+      height: 440px;
+      cursor: grab;
+      display: block;
+    }
+    canvas:active { cursor: grabbing; }
+
+    .canvas-hint {
+      margin-top: 12px;
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      font-family: monospace;
+      text-align: center;
+    }
+
+    /* Estilos específicos Secciones de Pestañas */
+    .tabs-bar {
+      display: inline-flex;
+      gap: 8px;
+      background: var(--card-bg);
+      padding: 6px;
+      border-radius: 24px;
+      border: 1px solid var(--border-color);
+    }
+
+    .tab-pill {
+      background: transparent;
+      border: 1px solid transparent;
+      color: var(--text-muted);
+      padding: 8px 18px;
+      border-radius: 18px;
+      font-size: 0.76rem;
+      font-family: monospace;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .tab-pill.active {
+      background: #1a1f2e;
+      border-color: #2e364f;
+      color: var(--text-main);
+    }
+
+    .dual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 28px;
+    }
+
+    .panel-active-highlight {
+      border-color: rgba(24, 197, 217, 0.45);
+    }
+
+    @media (max-width: 900px) {
+      .exercise-grid, .dual-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 2.3rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PANTALLA 0: HERO -->
+  <section class="hero-section" id="inicio">
+    <div class="hero-tag">MIT 18.06 • IMAGEN DE LA COLUMNA</div>
+    <h1 class="hero-title">La geometría de<br><span>las ecuaciones lineales</span></h1>
+    <p class="hero-desc">Cada matriz es un conjunto de direcciones. Resolver Ax = b significa encontrar exactamente hasta dónde caminar por cada uno.</p>
+    <a href="#ejercicio-1" class="hero-btn">Empieza a explorar ↓</a>
+  </section>
+
+  <!-- PANTALLA 1: EJERCICIO 1 -->
+  <section class="exercise-section" id="ejercicio-1">
+    <div class="exercise-grid">
+      <div class="left-col">
+        <div>
+          <div class="sec-tag">01 — IMAGEN DE COLUMNA</div>
+          <h2>Las columnas son indicaciones.</h2>
+          <p class="exercise-desc">
+            Ax = x·c₁ + y·c₂. La escala cambia cuánto avanzas por cada columna; sumar combina ambos movimientos. Resolver Ax = b es preguntar: <strong>¿hasta dónde tengo que caminar en cada dirección para aterrizar exactamente en b?</strong>
+          </p>
+        </div>
+
+        <div class="controls-card">
+          <div class="matrices-row">
+            <div>
+              <div class="matrix-label">MATRIZ A (columnas)</div>
+              <div class="matrix-bracket">
+                <span class="bracket-sym">[</span>
+                <div class="matrix-vals">
+                  <span style="color: var(--accent-blue);">2</span>
+                  <span style="color: var(--accent-cyan);">-1</span>
+                  <span style="color: var(--accent-blue);">-1</span>
+                  <span style="color: var(--accent-cyan);">2</span>
+                </div>
+                <span class="bracket-sym">]</span>
+              </div>
+            </div>
+            <div>
+              <div class="matrix-label">OBJETIVO b</div>
+              <div class="matrix-bracket">
+                <span class="bracket-sym">[</span>
+                <div class="vec-vals">
+                  <span id="b-0">0</span>
+                  <span id="b-1">3</span>
+                </div>
+                <span class="bracket-sym">]</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-header" style="color: var(--accent-blue);">
+              <span>x</span><span id="val-x1">1,00</span>
+            </div>
+            <input type="range" class="slider-blue" id="slider-x1" min="-4" max="4" step="0.05" value="1.00">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-header" style="color: var(--accent-cyan);">
+              <span>y</span><span id="val-y1">1,00</span>
+            </div>
+            <input type="range" class="slider-cyan" id="slider-y1" min="-4" max="4" step="0.05" value="1.00">
+          </div>
+
+          <div class="actions-row">
+            <button class="btn-action" onclick="setRandomTask1()">⚡ Aleatorio</button>
+            <button class="btn-action" onclick="resetTask1()">↺ Reinicio</button>
+          </div>
+        </div>
+
+        <div class="status-card" id="status-box-1">
+          ✕ &nbsp;Distancia desde B: 2,24
+        </div>
+      </div>
+
+      <div class="right-col">
+        <div class="canvas-card" id="card-canvas-1">
+          <canvas id="vectorCanvas1" width="480" height="450"></canvas>
+        </div>
+        <div class="canvas-hint">Arrastra el punto sólido para resolver a mano — actualización X y Y en directo</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PANTALLA 2: EJERCICIO 2 (MISMO SISTEMA. DOS PLANTAS.) -->
+  <section class="exercise-section" id="ejercicio-2">
+    <div style="width: 100%;">
+      <div style="text-align: center; margin-bottom: 32px;">
+        <div class="sec-tag">02 — DOS FOTOS, UNA RESPUESTA</div>
+        <h2 style="font-size: 2.2rem; margin-bottom: 12px;">Mismo sistema. Dos plantas.</h2>
+        <p class="exercise-desc" style="max-width: 720px; margin: 0 auto 22px;">
+          Todo sistema de ecuaciones puede interpretarse de dos maneras: como un conjunto de líneas que deben coincidir todas, o como una combinación de direcciones que deben aterrizar en un objetivo. Siempre coinciden en la respuesta.
+        </p>
+        <div class="tabs-bar">
+          <button class="tab-pill active" id="tab-eq" onclick="setFocusMode('eq')">Piensa como ecuaciones</button>
+          <button class="tab-pill" id="tab-vec" onclick="setFocusMode('vec')">Piensa en combinaciones vectoriales</button>
+        </div>
+      </div>
+
+      <div class="controls-card" style="max-width: 620px; margin: 0 auto 28px;">
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 32px;">
+          <div class="slider-group">
+            <div class="slider-header" style="color: var(--accent-blue);">
+              <span>x</span><span id="val-x2">1,50</span>
+            </div>
+            <input type="range" class="slider-blue" id="slider-x2" min="-4" max="4" step="0.05" value="1.50">
+          </div>
+          <div class="slider-group">
+            <div class="slider-header" style="color: var(--accent-cyan);">
+              <span>y</span><span id="val-y2">1,00</span>
+            </div>
+            <input type="range" class="slider-cyan" id="slider-y2" min="-4" max="4" step="0.05" value="1.00">
+          </div>
+        </div>
+      </div>
+
+      <div class="dual-grid">
+        <div class="canvas-card panel-active-highlight" id="panel-eq" style="max-width: none;">
+          <canvas id="cartesianCanvas2" width="480" height="410"></canvas>
+          <div class="canvas-hint" style="line-height: 1.5;">
+            <span style="color: var(--accent-blue);">2x − y = 0</span> &nbsp;|&nbsp; <span style="color: var(--accent-cyan);">−x + 2y = 3</span><br>
+            Las dos rectas se intersectan en (1, 2)
+          </div>
+        </div>
+        <div class="canvas-card" id="panel-vec" style="max-width: none;">
+          <canvas id="vectorCanvas2" width="480" height="410"></canvas>
+          <div class="canvas-hint" style="line-height: 1.5;">
+            El mismo (x, y) escala las columnas para que caigan exactamente en b<br>
+            Arrastra el punto para explorar
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top: 26px; display: flex; justify-content: center;">
+        <div class="status-card" id="status-box-2" style="max-width: 540px; width: 100%; justify-content: center;">
+          ✕ &nbsp;Distancia desde la intersección: 1,12
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PANTALLA 3: EJERCICIO 3 (LA MISMA IDEA, EN 3D) -->
+  <section class="exercise-section" id="ejercicio-3">
+    <div class="exercise-grid">
+      <div class="left-col">
+        <div>
+          <div class="sec-tag">03 — DIRECCIÓN ARRIBA</div>
+          <h2>La misma idea, en 3D.</h2>
+          <p class="exercise-desc">
+            Nada en la lógica cambia — sólo la imagen recibe un eje extra. Tres columnas, tres vectores, una suma encadenada. <strong>Arrastra con el mouse para rotar, usa la rueda (scroll) para hacer zoom.</strong>
+          </p>
+        </div>
+
+        <div class="controls-card">
+          <div class="slider-group">
+            <div class="slider-header" style="color: var(--accent-blue);">
+              <span>x</span><span id="val-x3">1,00</span>
+            </div>
+            <input type="range" class="slider-blue" id="slider-x3" min="-3" max="3" step="0.05" value="1.00">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-header" style="color: var(--accent-cyan);">
+              <span>y</span><span id="val-y3">1,00</span>
+            </div>
+            <input type="range" class="slider-cyan" id="slider-y3" min="-3" max="3" step="0.05" value="1.00">
+          </div>
+
+          <div class="slider-group">
+            <div class="slider-header" style="color: var(--accent-purple);">
+              <span>z</span><span id="val-z3">1,00</span>
+            </div>
+            <input type="range" class="slider-purple" id="slider-z3" min="-3" max="3" step="0.05" value="1.00">
+          </div>
+        </div>
+
+        <div class="status-card" id="status-box-3">
+          ✕ &nbsp;Distancia desde B: 2,45
+        </div>
+      </div>
+
+      <div class="right-col">
+        <div class="canvas-card" id="card-canvas-3">
+          <canvas id="vectorCanvas3" width="480" height="450"></canvas>
+        </div>
+        <div class="canvas-hint">Arrastra para rotar la vista 3D • Usa la rueda del mouse para hacer Zoom</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PANTALLA 4: EJERCICIO 4 (EXPLORADOR DE ESPACIO DE COLUMNAS) -->
+  <section class="exercise-section" id="ejercicio-4">
+    <div class="exercise-grid">
+      <div class="left-col">
+        <div>
+          <div class="sec-tag">04 — EXPLORADOR DE RANGO</div>
+          <h2>¿Qué pueden crear estas columnas?</h2>
+          <p class="exercise-desc">
+            Cada combinación x·c₁ + y·c₂, para cada x e y posibles, barrerá la extensión de las columnas. <strong>Edita las entradas abajo y observa cuándo el plano se vuelve accesible.</strong>
+          </p>
+        </div>
+
+        <div class="controls-card">
+          <div style="font-family: monospace; font-size: 0.72rem; color: var(--text-muted); margin-bottom: 8px;">EDITAR LAS COLUMNAS</div>
+          
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; font-family: monospace;">
+            <div>
+              <div style="font-size: 0.65rem; color: var(--accent-blue); margin-bottom: 4px;">c₁</div>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <input type="number" id="c1x" class="editable-input" value="2">
+                <input type="number" id="c1y" class="editable-input" value="-1">
+              </div>
+            </div>
+            <div>
+              <div style="font-size: 0.65rem; color: var(--accent-cyan); margin-bottom: 4px;">c₂</div>
+              <div style="display: flex; flex-direction: column; gap: 6px;">
+                <input type="number" id="c2x" class="editable-input" value="-1">
+                <input type="number" id="c2y" class="editable-input" value="2">
+              </div>
+            </div>
+          </div>
+
+          <div class="status-card" id="status-space-4" style="margin-top: 14px; background: rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.4); color: #10b981;">
+            ✓ &nbsp;Esta matriz abarca todo el espacio.
+          </div>
+
+          <div style="margin-top: 14px;">
+            <button class="btn-action" onclick="loadCollapsedExample()">Prueba con un ejemplo colapsado</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="right-col">
+        <div class="canvas-card">
+          <canvas id="spaceCanvas4" width="480" height="450"></canvas>
+        </div>
+        <div class="canvas-hint">Visualización del espacio generado por las columnas de A</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PANTALLA 5: EJERCICIO 5 (INDEPENDENCIA Y COLAPSO) -->
+  <section class="exercise-section" id="ejercicio-5" style="border-bottom: none; flex-direction: column; align-items: stretch;">
+    <div style="width: 100%;">
+      
+      <div style="text-align: center; margin-bottom: 30px;">
+        <div class="sec-tag">05 — INDEPENDENCIA</div>
+        <h2 style="font-size: 2.2rem; margin-bottom: 12px;">¿Las columnas aportan algo nuevo?</h2>
+        <p class="exercise-desc" style="max-width: 780px; margin: 0 auto 24px;">
+          Una columna solo es útil si apunta a un lugar al que las demás no pueden llegar ya. Esa es toda la idea detrás de la independencia lineal.
+        </p>
+        
+        <div class="tabs-bar" style="display: inline-flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+          <button class="tab-pill active" id="tab5-A" onclick="setPreset5('A')">Preset A • Columnas independientes</button>
+          <button class="tab-pill" id="tab5-B" onclick="setPreset5('B')">Preset B • Columna 2 = Columna 1</button>
+          <button class="tab-pill" id="tab5-C" onclick="setPreset5('C')">Preset C • Columna 3 = Columna 1 + Columna 2</button>
+        </div>
+      </div>
+
+      <div class="exercise-grid">
+        <div class="left-col">
+          <div class="controls-card" style="min-height: 240px; display: flex; flex-direction: column; justify-content: center;">
+            <div class="sec-tag" id="pre5-tag" style="margin-bottom: 8px;">PRESET A</div>
+            <h3 id="pre5-title" style="font-size: 1.4rem; margin-bottom: 12px;">Columnas independientes</h3>
+            <p id="pre5-desc" class="exercise-desc" style="margin-bottom: 24px;">Dos columnas que apuntan en direcciones realmente diferentes alcanzan cada punto del plano.</p>
+            
+            <div class="status-card" id="pre5-status" style="background: rgba(16, 185, 129, 0.08); border-color: rgba(16, 185, 129, 0.4); color: #10b981;">
+              Todo el plano se vuelve alcanzable.
+            </div>
+          </div>
+        </div>
+
+        <div class="right-col">
+          <div class="canvas-card" style="padding: 0; overflow: hidden; position: relative;">
+            <canvas id="canvas5" width="480" height="420" style="border-radius: 16px;"></canvas>
+          </div>
+          <div class="canvas-hint" id="hint5">Visualización en 2D interactiva</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+
+  <script>
+    function formatNum(n) {
+      return n.toFixed(2).replace('.', ',');
+    }
+
+    function drawGridAndAxes(ctx, scale) {
+      const w = ctx.canvas.width;
+      const h = ctx.canvas.height;
+      const cx = w / 2;
+      const cy = h / 2;
+
+      ctx.clearRect(0, 0, w, h);
+
+      const grad = ctx.createRadialGradient(cx, cy, 10, cx, cy, 240);
+      grad.addColorStop(0, '#161a29');
+      grad.addColorStop(1, '#0b0c10');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+
+      ctx.strokeStyle = '#181c2b';
+      ctx.lineWidth = 1;
+      for (let i = cx % scale; i < w; i += scale) {
+        ctx.beginPath(); ctx.moveTo(i, 0); ctx.lineTo(i, h); ctx.stroke();
+      }
+      for (let j = cy % scale; j < h; j += scale) {
+        ctx.beginPath(); ctx.moveTo(0, j); ctx.lineTo(w, j); ctx.stroke();
+      }
+
+      ctx.strokeStyle = '#333b51';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
+
+      return { cx, cy };
+    }
+
+    // Dibuja una cuadrícula de puntos en lugar de líneas (Para Ejercicio 5)
+    function drawDotGrid2D(ctx, scale) {
+      const w = ctx.canvas.width, h = ctx.canvas.height;
+      const cx = w / 2, cy = h / 2;
+
+      ctx.clearRect(0, 0, w, h);
+      const grad = ctx.createRadialGradient(cx, cy, 10, cx, cy, 240);
+      grad.addColorStop(0, '#161a29');
+      grad.addColorStop(1, '#0b0c10');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+      for (let x = (cx % scale) - scale; x < w + scale; x += scale) {
+        for (let y = (cy % scale) - scale; y < h + scale; y += scale) {
+          ctx.beginPath(); ctx.arc(x, y, 1.2, 0, Math.PI * 2); ctx.fill();
+        }
+      }
+      // Ejes
+      ctx.strokeStyle = '#333b51'; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, h); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(0, cy); ctx.lineTo(w, cy); ctx.stroke();
+      return { cx, cy };
+    }
+
+    function drawArrowClean2D(ctx, x1, y1, x2, y2, color, width, dashed) {
+      const dx = x2 - x1;
+      const dy = y2 - y1;
+      const len = Math.hypot(dx, dy);
+      if (len < 4) return;
+      ctx.save();
+      if (dashed) ctx.setLineDash([6, 6]);
+      ctx.strokeStyle = color;
+      ctx.lineWidth = width;
+      ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+      ctx.restore();
+      const angle = Math.atan2(dy, dx);
+      const headLength = 9;
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.moveTo(x2, y2);
+      ctx.lineTo(x2 - headLength * Math.cos(angle - Math.PI / 6), y2 - headLength * Math.sin(angle - Math.PI / 6));
+      ctx.lineTo(x2 - headLength * Math.cos(angle + Math.PI / 6), y2 - headLength * Math.sin(angle + Math.PI / 6));
+      ctx.closePath(); ctx.fill();
+    }
+
+    /* =========================================================================
+       EJERCICIO 1: IMAGEN DE COLUMNA 2D
+       ========================================================================= */
+    const canvas1 = document.getElementById('vectorCanvas1');
+    const ctx1 = canvas1.getContext('2d');
+    const c1_ex1 = [2, -1], c2_ex1 = [-1, 2];
+    let b_ex1 = [0, 3];
+    let x1 = 1.0, y1 = 1.0;
+    let drag1 = false;
+
+    const sx1 = document.getElementById('slider-x1'), sy1 = document.getElementById('slider-y1');
+    const vx1 = document.getElementById('val-x1'), vy1 = document.getElementById('val-y1');
+    const status1 = document.getElementById('status-box-1'), cardCanvas1 = document.getElementById('card-canvas-1');
+
+    function updateEx1() {
+      sx1.value = x1; sy1.value = y1;
+      vx1.textContent = formatNum(x1); vy1.textContent = formatNum(y1);
+      drawEx1();
+    }
+
+    sx1.addEventListener('input', (e) => { x1 = parseFloat(e.target.value); vx1.textContent = formatNum(x1); drawEx1(); });
+    sy1.addEventListener('input', (e) => { y1 = parseFloat(e.target.value); vy1.textContent = formatNum(y1); drawEx1(); });
+
+    function setRandomTask1() {
+      const rx = Math.floor(Math.random() * 5) - 2;
+      const ry = Math.floor(Math.random() * 5) - 2;
+      b_ex1 = [rx * c1_ex1[0] + ry * c2_ex1[0], rx * c1_ex1[1] + ry * c2_ex1[1]];
+      document.getElementById('b-0').textContent = b_ex1[0];
+      document.getElementById('b-1').textContent = b_ex1[1];
+      x1 = 0; y1 = 0;
+      updateEx1();
+    }
+
+    function resetTask1() {
+      b_ex1 = [0, 3];
+      document.getElementById('b-0').textContent = '0';
+      document.getElementById('b-1').textContent = '3';
+      x1 = 1.0; y1 = 1.0;
+      updateEx1();
+    }
+
+    canvas1.addEventListener('mousedown', (e) => {
+      const rect = canvas1.getBoundingClientRect();
+      const mx = (e.clientX - rect.left) * (canvas1.width / rect.width);
+      const my = (e.clientY - rect.top) * (canvas1.height / rect.height);
+      const scale = 46, cx = canvas1.width / 2, cy = canvas1.height / 2;
+      const vSum = [x1 * c1_ex1[0] + y1 * c2_ex1[0], x1 * c1_ex1[1] + y1 * c2_ex1[1]];
+      if (Math.hypot(mx - (cx + vSum[0] * scale), my - (cy - vSum[1] * scale)) < 35) drag1 = true;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!drag1) return;
+      const rect = canvas1.getBoundingClientRect();
+      const mx = (e.clientX - rect.left) * (canvas1.width / rect.width);
+      const my = (e.clientY - rect.top) * (canvas1.height / rect.height);
+      const scale = 46, cx = canvas1.width / 2, cy = canvas1.height / 2;
+      const cartX = (mx - cx) / scale, cartY = (cy - my) / scale;
+      const det = c1_ex1[0] * c2_ex1[1] - c1_ex1[1] * c2_ex1[0];
+      x1 = Math.max(-4, Math.min(4, parseFloat(((cartX * c2_ex1[1] - cartY * c2_ex1[0]) / det).toFixed(2))));
+      y1 = Math.max(-4, Math.min(4, parseFloat(((c1_ex1[0] * cartY - c1_ex1[1] * cartX) / det).toFixed(2))));
+      updateEx1();
+    });
+
+    window.addEventListener('mouseup', () => { drag1 = false; });
+
+    function drawEx1() {
+      const scale = 46;
+      const { cx, cy } = drawGridAndAxes(ctx1, scale);
+      const toScr = (vx, vy) => [cx + vx * scale, cy - vy * scale];
+      const vSum = [x1 * c1_ex1[0] + y1 * c2_ex1[0], x1 * c1_ex1[1] + y1 * c2_ex1[1]];
+      const dist = Math.hypot(vSum[0] - b_ex1[0], vSum[1] - b_ex1[1]);
+      const isSolved = dist < 0.08;
+
+      const c2Scr = toScr(c2_ex1[0], c2_ex1[1]);
+      drawArrowClean2D(ctx1, cx, cy, c2Scr[0], c2Scr[1], '#18c5d9', 1.8, true);
+
+      const bScr = toScr(b_ex1[0], b_ex1[1]);
+      drawArrowClean2D(ctx1, cx, cy, bScr[0], bScr[1], isSolved ? '#10b981' : '#ffffff', 2.2, true);
+
+      const pC1 = toScr(x1 * c1_ex1[0], x1 * c1_ex1[1]);
+      const pSum = toScr(vSum[0], vSum[1]);
+
+      drawArrowClean2D(ctx1, cx, cy, pC1[0], pC1[1], '#4f7df3', 3, false);
+      drawArrowClean2D(ctx1, pC1[0], pC1[1], pSum[0], pSum[1], '#18c5d9', 3, false);
+
+      ctx1.save();
+      ctx1.strokeStyle = isSolved ? '#10b981' : '#f06565';
+      ctx1.lineWidth = 3;
+      ctx1.beginPath(); ctx1.moveTo(cx, cy); ctx1.lineTo(pSum[0], pSum[1]); ctx1.stroke();
+      ctx1.restore();
+
+      ctx1.save();
+      ctx1.shadowColor = isSolved ? '#10b981' : 'rgba(240, 101, 101, 0.8)';
+      ctx1.shadowBlur = 16;
+      ctx1.fillStyle = isSolved ? '#10b981' : '#f06565';
+      ctx1.beginPath(); ctx1.arc(pSum[0], pSum[1], 8.5, 0, Math.PI * 2); ctx1.fill();
+      ctx1.strokeStyle = '#ffffff'; ctx1.lineWidth = 2.5; ctx1.stroke();
+      ctx1.restore();
+
+      if (isSolved) {
+        status1.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+        status1.style.color = '#10b981';
+        status1.style.background = 'rgba(16, 185, 129, 0.08)';
+        status1.innerHTML = `✓ &nbsp;Solución correcta - Ax = b`;
+        cardCanvas1.style.borderColor = 'rgba(16, 185, 129, 0.5)';
+      } else {
+        status1.style.borderColor = 'rgba(240, 101, 101, 0.28)';
+        status1.style.color = '#f06565';
+        status1.style.background = 'rgba(240, 101, 101, 0.08)';
+        status1.innerHTML = `✕ &nbsp;Distancia desde B: ${formatNum(dist)}`;
+        cardCanvas1.style.borderColor = 'var(--border-color)';
+      }
+    }
+
+    /* =========================================================================
+       EJERCICIO 2: MISMO SISTEMA. DOS PLANTAS.
+       ========================================================================= */
+    const cartCanvas2 = document.getElementById('cartesianCanvas2');
+    const vecCanvas2 = document.getElementById('vectorCanvas2');
+    const ctxCart2 = cartCanvas2.getContext('2d');
+    const ctxVec2 = vecCanvas2.getContext('2d');
+
+    const sx2 = document.getElementById('slider-x2'), sy2 = document.getElementById('slider-y2');
+    const vx2 = document.getElementById('val-x2'), vy2 = document.getElementById('val-y2');
+    const status2 = document.getElementById('status-box-2');
+
+    const c1_ex2 = [2, -1], c2_ex2 = [-1, 2], b_ex2 = [0, 3];
+    let x2 = 1.5, y2 = 1.0, drag2 = null;
+
+    function setFocusMode(mode) {
+      document.getElementById('tab-eq').classList.toggle('active', mode === 'eq');
+      document.getElementById('tab-vec').classList.toggle('active', mode === 'vec');
+      document.getElementById('panel-eq').classList.toggle('panel-active-highlight', mode === 'eq');
+      document.getElementById('panel-vec').classList.toggle('panel-active-highlight', mode === 'vec');
+    }
+
+    function updateEx2() {
+      sx2.value = x2; sy2.value = y2;
+      vx2.textContent = formatNum(x2); vy2.textContent = formatNum(y2);
+      drawEx2();
+    }
+
+    sx2.addEventListener('input', (e) => { x2 = parseFloat(e.target.value); vx2.textContent = formatNum(x2); drawEx2(); });
+    sy2.addEventListener('input', (e) => { y2 = parseFloat(e.target.value); vy2.textContent = formatNum(y2); drawEx2(); });
+
+    cartCanvas2.addEventListener('mousedown', (e) => { drag2 = 'cart'; handleCart2Drag(e); });
+    vecCanvas2.addEventListener('mousedown', (e) => {
+      const rect = vecCanvas2.getBoundingClientRect();
+      const mx = (e.clientX - rect.left) * (vecCanvas2.width / rect.width);
+      const my = (e.clientY - rect.top) * (vecCanvas2.height / rect.height);
+      const scale = 42, cx = vecCanvas2.width / 2, cy = vecCanvas2.height / 2;
+      const vSum = [x2 * c1_ex2[0] + y2 * c2_ex2[0], x2 * c1_ex2[1] + y2 * c2_ex2[1]];
+      if (Math.hypot(mx - (cx + vSum[0] * scale), my - (cy - vSum[1] * scale)) < 35) drag2 = 'vec';
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!drag2) return;
+      if (drag2 === 'cart') handleCart2Drag(e);
+      if (drag2 === 'vec') handleVec2Drag(e);
+    });
+    window.addEventListener('mouseup', () => { drag2 = null; });
+
+    function handleCart2Drag(e) {
+      const rect = cartCanvas2.getBoundingClientRect();
+      const mx = (e.clientX - rect.left) * (cartCanvas2.width / rect.width);
+      const my = (e.clientY - rect.top) * (cartCanvas2.height / rect.height);
+      const scale = 42, cx = cartCanvas2.width / 2, cy = cartCanvas2.height / 2;
+      x2 = Math.max(-4, Math.min(4, parseFloat(((mx - cx) / scale).toFixed(2))));
+      y2 = Math.max(-4, Math.min(4, parseFloat(((cy - my) / scale).toFixed(2))));
+      updateEx2();
+    }
+
+    function handleVec2Drag(e) {
+      const rect = vecCanvas2.getBoundingClientRect();
+      const mx = (e.clientX - rect.left) * (vecCanvas2.width / rect.width);
+      const my = (e.clientY - rect.top) * (vecCanvas2.height / rect.height);
+      const scale = 42, cx = vecCanvas2.width / 2, cy = vecCanvas2.height / 2;
+      const cartX = (mx - cx) / scale, cartY = (cy - my) / scale;
+      const det = c1_ex2[0] * c2_ex2[1] - c1_ex2[1] * c2_ex2[0];
+      x2 = Math.max(-4, Math.min(4, parseFloat(((cartX * c2_ex2[1] - cartY * c2_ex2[0]) / det).toFixed(2))));
+      y2 = Math.max(-4, Math.min(4, parseFloat(((c1_ex2[0] * cartY - c1_ex2[1] * cartX) / det).toFixed(2))));
+      updateEx2();
+    }
+
+    function drawEx2() {
+      const scale = 42;
+      const distInter = Math.hypot(x2 - 1, y2 - 2);
+      const isSolved = distInter < 0.08;
+
+      const { cx: cxC, cy: cyC } = drawGridAndAxes(ctxCart2, scale);
+      const toScrC = (vx, vy) => [cxC + vx * scale, cyC - vy * scale];
+
+      ctxCart2.strokeStyle = '#4f7df3'; ctxCart2.lineWidth = 2.5;
+      ctxCart2.beginPath(); const p1A = toScrC(-6, -12), p1B = toScrC(6, 12);
+      ctxCart2.moveTo(p1A[0], p1A[1]); ctxCart2.lineTo(p1B[0], p1B[1]); ctxCart2.stroke();
+
+      ctxCart2.strokeStyle = '#18c5d9'; ctxCart2.lineWidth = 2.5;
+      ctxCart2.beginPath(); const p2A = toScrC(-6, -1.5), p2B = toScrC(6, 4.5);
+      ctxCart2.moveTo(p2A[0], p2A[1]); ctxCart2.lineTo(p2B[0], p2B[1]); ctxCart2.stroke();
+
+      const pInt = toScrC(1, 2);
+      ctxCart2.fillStyle = isSolved ? '#10b981' : 'rgba(255,255,255,0.25)';
+      ctxCart2.beginPath(); ctxCart2.arc(pInt[0], pInt[1], 5, 0, Math.PI*2); ctxCart2.fill();
+
+      const pUserC = toScrC(x2, y2);
+      ctxCart2.save();
+      ctxCart2.shadowColor = isSolved ? '#10b981' : 'rgba(240, 101, 101, 0.8)';
+      ctxCart2.shadowBlur = 14;
+      ctxCart2.fillStyle = isSolved ? '#10b981' : '#f06565';
+      ctxCart2.beginPath(); ctxCart2.arc(pUserC[0], pUserC[1], 8, 0, Math.PI * 2); ctxCart2.fill();
+      ctxCart2.strokeStyle = '#ffffff'; ctxCart2.lineWidth = 2; ctxCart2.stroke();
+      ctxCart2.restore();
+
+      const { cx: cxV, cy: cyV } = drawGridAndAxes(ctxVec2, scale);
+      const toScrV = (vx, vy) => [cxV + vx * scale, cyV - vy * scale];
+
+      const bScr2 = toScrV(b_ex2[0], b_ex2[1]);
+      drawArrowClean2D(ctxVec2, cxV, cyV, bScr2[0], bScr2[1], isSolved ? '#10b981' : '#ffffff', 2.2, true);
+
+      const vXc1 = [x2 * c1_ex2[0], x2 * c1_ex2[1]];
+      const vSum = [vXc1[0] + y2 * c2_ex2[0], vXc1[1] + y2 * c2_ex2[1]];
+      const pC1 = toScrV(vXc1[0], vXc1[1]);
+      const pSum = toScrV(vSum[0], vSum[1]);
+
+      drawArrowClean2D(ctxVec2, cxV, cyV, pC1[0], pC1[1], '#4f7df3', 3, false);
+      drawArrowClean2D(ctxVec2, pC1[0], pC1[1], pSum[0], pSum[1], '#18c5d9', 3, false);
+
+      ctxVec2.strokeStyle = isSolved ? '#10b981' : '#f06565';
+      ctxVec2.lineWidth = 2.8;
+      ctxVec2.beginPath(); ctxVec2.moveTo(cxV, cyV); ctxVec2.lineTo(pSum[0], pSum[1]); ctxVec2.stroke();
+
+      ctxVec2.save();
+      ctxVec2.shadowColor = isSolved ? '#10b981' : 'rgba(240, 101, 101, 0.8)';
+      ctxVec2.shadowBlur = 14;
+      ctxVec2.fillStyle = isSolved ? '#10b981' : '#f06565';
+      ctxVec2.beginPath(); ctxVec2.arc(pSum[0], pSum[1], 8, 0, Math.PI * 2); ctxVec2.fill();
+      ctxVec2.strokeStyle = '#ffffff'; ctxVec2.lineWidth = 2; ctxVec2.stroke();
+      ctxVec2.restore();
+
+      if (isSolved) {
+        status2.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+        status2.style.color = '#10b981';
+        status2.style.background = 'rgba(16, 185, 129, 0.08)';
+        status2.innerHTML = `✓ &nbsp;Ambas posturas coinciden: esta es la solución.`;
+      } else {
+        status2.style.borderColor = 'rgba(240, 101, 101, 0.28)';
+        status2.style.color = '#f06565';
+        status2.style.background = 'rgba(240, 101, 101, 0.08)';
+        status2.innerHTML = `✕ &nbsp;Distancia desde la intersección: ${formatNum(distInter)}`;
+      }
+    }
+
+    /* =========================================================================
+       EJERCICIO 3: LA MISMA IDEA, EN 3D
+       ========================================================================= */
+    const canvas3 = document.getElementById('vectorCanvas3');
+    const ctx3 = canvas3.getContext('2d');
+
+    const c1_ex3 = [1.5, 2, -1];
+    const c2_ex3 = [-1, 1, 2];
+    const c3_ex3 = [2, -1, 1.5];
+    const b_ex3  = [2.5, 2, 2.5]; 
+
+    let x3 = 1.0, y3 = 1.0, z3 = 1.0;
+    let rotX3 = 0.5, rotY3 = 0.6; 
+    let zoomLevel3 = 65; 
+    let isDragging3D_3 = false;
+    let lastMouseX3 = 0, lastMouseY3 = 0;
+
+    const sx3 = document.getElementById('slider-x3'), sy3 = document.getElementById('slider-y3'), sz3 = document.getElementById('slider-z3');
+    const vx3 = document.getElementById('val-x3'), vy3 = document.getElementById('val-y3'), vz3 = document.getElementById('val-z3');
+    const status3 = document.getElementById('status-box-3');
+
+    function updateEx3() {
+      sx3.value = x3; sy3.value = y3; sz3.value = z3;
+      vx3.textContent = formatNum(x3); vy3.textContent = formatNum(y3); vz3.textContent = formatNum(z3);
+      drawEx3();
+    }
+
+    sx3.addEventListener('input', (e) => { x3 = parseFloat(e.target.value); updateEx3(); });
+    sy3.addEventListener('input', (e) => { y3 = parseFloat(e.target.value); updateEx3(); });
+    sz3.addEventListener('input', (e) => { z3 = parseFloat(e.target.value); updateEx3(); });
+
+    canvas3.addEventListener('mousedown', (e) => {
+      isDragging3D_3 = true;
+      lastMouseX3 = e.clientX; lastMouseY3 = e.clientY;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging3D_3) return;
+      rotY3 += (e.clientX - lastMouseX3) * 0.015;
+      rotX3 -= (e.clientY - lastMouseY3) * 0.015;
+      lastMouseX3 = e.clientX; lastMouseY3 = e.clientY;
+      drawEx3();
+    });
+
+    window.addEventListener('mouseup', () => { isDragging3D_3 = false; });
+    canvas3.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      zoomLevel3 = Math.max(25, Math.min(150, zoomLevel3 - e.deltaY * 0.05));
+      drawEx3();
+    }, { passive: false });
+
+    function project3DGen(x, y, z, w, h, rotX, rotY, zoomLevel) {
+      let x1 = x * Math.cos(rotY) + z * Math.sin(rotY);
+      let y1 = y;
+      let z1 = -x * Math.sin(rotY) + z * Math.cos(rotY);
+
+      let x2 = x1;
+      let y2 = y1 * Math.cos(rotX) - z1 * Math.sin(rotX);
+      let z2 = y1 * Math.sin(rotX) + z1 * Math.cos(rotX);
+
+      const fov = 400;
+      const scale = fov / (fov + z2 + 250);
+      return [ w / 2 + x2 * zoomLevel * scale, h / 2 - y2 * zoomLevel * scale, z2 ];
+    }
+
+    function drawArrow3DFull(ctx, x1, y1, x2, y2, color, width, dashed) {
+      const dx = x2 - x1; const dy = y2 - y1;
+      const len = Math.hypot(dx, dy);
+      if (len < 3) return;
+
+      ctx.save();
+      if (dashed) ctx.setLineDash([4, 4]);
+      ctx.strokeStyle = color; ctx.lineWidth = width; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      ctx.beginPath(); ctx.moveTo(x1, y1); ctx.lineTo(x2, y2); ctx.stroke();
+      ctx.restore();
+
+      const angle = Math.atan2(dy, dx);
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.moveTo(x2, y2);
+      ctx.lineTo(x2 - 7 * Math.cos(angle - Math.PI / 6), y2 - 7 * Math.sin(angle - Math.PI / 6));
+      ctx.lineTo(x2 - 7 * Math.cos(angle + Math.PI / 6), y2 - 7 * Math.sin(angle + Math.PI / 6));
+      ctx.closePath(); ctx.fill();
+    }
+
+    function drawEx3() {
+      const w = canvas3.width, h = canvas3.height;
+      drawGridAndAxes(ctx3, 50);
+
+      const vSum = [
+        x3 * c1_ex3[0] + y3 * c2_ex3[0] + z3 * c3_ex3[0],
+        x3 * c1_ex3[1] + y3 * c2_ex3[1] + z3 * c3_ex3[1],
+        x3 * c1_ex3[2] + y3 * c2_ex3[2] + z3 * c3_ex3[2]
+      ];
+      const dist = Math.hypot(vSum[0] - b_ex3[0], vSum[1] - b_ex3[1], vSum[2] - b_ex3[2]);
+      const isSolved = dist < 0.15;
+
+      const origin = project3DGen(0, 0, 0, w, h, rotX3, rotY3, zoomLevel3);
+      const bProj = project3DGen(b_ex3[0], b_ex3[1], b_ex3[2], w, h, rotX3, rotY3, zoomLevel3);
+
+      const ex = project3DGen(3, 0, 0, w, h, rotX3, rotY3, zoomLevel3);
+      const ey = project3DGen(0, 3, 0, w, h, rotX3, rotY3, zoomLevel3);
+      const ez = project3DGen(0, 0, 3, w, h, rotX3, rotY3, zoomLevel3);
+      drawArrow3DFull(ctx3, origin[0], origin[1], ex[0], ex[1], '#333b51', 1, true);
+      drawArrow3DFull(ctx3, origin[0], origin[1], ey[0], ey[1], '#333b51', 1, true);
+      drawArrow3DFull(ctx3, origin[0], origin[1], ez[0], ez[1], '#333b51', 1, true);
+
+      drawArrow3DFull(ctx3, origin[0], origin[1], bProj[0], bProj[1], isSolved ? '#10b981' : '#ffffff', 2.2, true);
+
+      const p1 = [x3*c1_ex3[0], x3*c1_ex3[1], x3*c1_ex3[2]];
+      const p2 = [p1[0] + y3*c2_ex3[0], p1[1] + y3*c2_ex3[1], p1[2] + y3*c2_ex3[2]];
+      
+      const s1 = project3DGen(p1[0], p1[1], p1[2], w, h, rotX3, rotY3, zoomLevel3);
+      const s2 = project3DGen(p2[0], p2[1], p2[2], w, h, rotX3, rotY3, zoomLevel3);
+      const sSum = project3DGen(vSum[0], vSum[1], vSum[2], w, h, rotX3, rotY3, zoomLevel3);
+
+      drawArrow3DFull(ctx3, origin[0], origin[1], s1[0], s1[1], '#4f7df3', 3, false);
+      ctx3.fillStyle = '#4f7df3'; ctx3.font = 'bold 12px monospace'; ctx3.fillText('x·c₁', s1[0] + 8, s1[1] - 4);
+
+      drawArrow3DFull(ctx3, s1[0], s1[1], s2[0], s2[1], '#18c5d9', 3, false);
+      ctx3.fillStyle = '#18c5d9'; ctx3.font = 'bold 12px monospace'; ctx3.fillText('y·c₂', s2[0] + 8, s2[1] - 4);
+
+      drawArrow3DFull(ctx3, s2[0], s2[1], sSum[0], sSum[1], '#a855f7', 3, false);
+      ctx3.fillStyle = '#a855f7'; ctx3.font = 'bold 12px monospace'; ctx3.fillText('z·c₃', sSum[0] + 8, sSum[1] - 4);
+
+      ctx3.strokeStyle = isSolved ? '#10b981' : 'rgba(240, 101, 101, 0.4)';
+      ctx3.setLineDash([4, 4]); ctx3.beginPath(); ctx3.moveTo(origin[0], origin[1]); ctx3.lineTo(sSum[0], sSum[1]); ctx3.stroke();
+      ctx3.setLineDash([]);
+
+      ctx3.save();
+      ctx3.shadowColor = isSolved ? '#10b981' : '#f06565';
+      ctx3.shadowBlur = 18; ctx3.fillStyle = isSolved ? '#10b981' : '#f06565';
+      ctx3.beginPath(); ctx3.arc(sSum[0], sSum[1], 10, 0, Math.PI * 2); ctx3.fill();
+      ctx3.strokeStyle = '#ffffff'; ctx3.lineWidth = 2.5; ctx3.stroke();
+      ctx3.restore();
+
+      ctx3.fillStyle = '#ffffff'; ctx3.font = 'bold 12px monospace'; ctx3.fillText('Ax₃', sSum[0] - 12, sSum[1] - 16);
+
+      if (isSolved) {
+        status3.style.borderColor = 'rgba(16, 185, 129, 0.4)'; status3.style.color = '#10b981'; status3.style.background = 'rgba(16, 185, 129, 0.08)';
+        status3.innerHTML = `✓ &nbsp;¡Solución 3D encontrada! Ax = b`;
+      } else {
+        status3.style.borderColor = 'rgba(240, 101, 101, 0.28)'; status3.style.color = '#f06565'; status3.style.background = 'rgba(240, 101, 101, 0.08)';
+        status3.innerHTML = `✕ &nbsp;Distancia desde B: ${formatNum(dist)}`;
+      }
+    }
+
+    /* =========================================================================
+       EJERCICIO 4: EXPLORADOR DE ESPACIO DE COLUMNAS
+       ========================================================================= */
+    const canvas4 = document.getElementById('spaceCanvas4');
+    const ctx4 = canvas4.getContext('2d');
+    const inpC1X = document.getElementById('c1x'), inpC1Y = document.getElementById('c1y');
+    const inpC2X = document.getElementById('c2x'), inpC2Y = document.getElementById('c2y');
+    const statusSpace4 = document.getElementById('status-space-4');
+
+    function getMatrix4() {
+      return [[parseFloat(inpC1X.value)||0, parseFloat(inpC2X.value)||0], [parseFloat(inpC1Y.value)||0, parseFloat(inpC2Y.value)||0]];
+    }
+
+    function loadCollapsedExample() {
+      inpC1X.value = "1"; inpC1Y.value = "1"; inpC2X.value = "2"; inpC2Y.value = "2";
+      drawEx4();
+    }
+    [inpC1X, inpC1Y, inpC2X, inpC2Y].forEach(inp => inp.addEventListener('input', drawEx4));
+
+    function drawEx4() {
+      const scale = 45;
+      const { cx, cy } = drawGridAndAxes(ctx4, scale);
+      const toScr = (vx, vy) => [cx + vx * scale, cy - vy * scale];
+      const M = getMatrix4();
+      const c1 = [M[0][0], M[1][0]], c2 = [M[0][1], M[1][1]];
+      const det = c1[0] * c2[1] - c1[1] * c2[0];
+      
+      if (Math.abs(det) < 0.001) {
+        ctx4.strokeStyle = '#a855f7'; ctx4.lineWidth = 3; ctx4.beginPath();
+        let dx = c1[0] !== 0 || c1[1] !== 0 ? c1[0] : c2[0];
+        let dy = c1[0] !== 0 || c1[1] !== 0 ? c1[1] : c2[1];
+        if (dx === 0 && dy === 0) { dx = 1; dy = 0; }
+        const pA = toScr(-10 * dx, -10 * dy), pB = toScr(10 * dx, 10 * dy);
+        ctx4.moveTo(pA[0], pA[1]); ctx4.lineTo(pB[0], pB[1]); ctx4.stroke();
+        statusSpace4.style.borderColor = 'rgba(240, 101, 101, 0.4)'; statusSpace4.style.color = '#f06565'; statusSpace4.style.background = 'rgba(240, 101, 101, 0.08)';
+        statusSpace4.innerHTML = `✕ &nbsp;Esta matriz abarca una línea.`;
+      } else {
+        ctx4.fillStyle = 'rgba(16, 185, 129, 0.04)'; ctx4.fillRect(0, 0, canvas4.width, canvas4.height);
+        statusSpace4.style.borderColor = 'rgba(16, 185, 129, 0.4)'; statusSpace4.style.color = '#10b981'; statusSpace4.style.background = 'rgba(16, 185, 129, 0.08)';
+        statusSpace4.innerHTML = `✓ &nbsp;Esta matriz abarca todo el espacio.`;
+      }
+      drawArrowClean2D(ctx4, cx, cy, toScr(c1[0],c1[1])[0], toScr(c1[0],c1[1])[1], '#4f7df3', 2.8, false);
+      drawArrowClean2D(ctx4, cx, cy, toScr(c2[0],c2[1])[0], toScr(c2[0],c2[1])[1], '#18c5d9', 2.8, false);
+    }
+
+    /* =========================================================================
+       EJERCICIO 5: INDEPENDENCIA (NUEVO)
+       ========================================================================= */
+    const canvas5 = document.getElementById('canvas5');
+    const ctx5 = canvas5.getContext('2d');
+    let currentPreset5 = 'A';
+    
+    // Variables para el 3D del Preset C
+    let rotX5 = 0.55, rotY5 = 0.65, zoomLevel5 = 75;
+    let isDragging3D_5 = false;
+    let lastMouseX5 = 0, lastMouseY5 = 0;
+
+    const presets5Data = {
+      'A': {
+        title: "Columnas independientes",
+        desc: "Dos columnas que apuntan en direcciones realmente diferentes alcanzan cada punto del plano.",
+        tagTitle: "PRESET A",
+        status: "Todo el plano se vuelve alcanzable.",
+        color: "#10b981",
+        bg: "rgba(16, 185, 129, 0.08)"
+      },
+      'B': {
+        title: "Columna 2 = Columna 1",
+        desc: "Una columna es múltiplo de la otra, se colapsan en una sola línea. Todos los vectores en esa línea son alcanzables.",
+        tagTitle: "PRESET B",
+        status: "Solo los vectores en esta línea son accesibles.",
+        color: "#a855f7",
+        bg: "rgba(168, 85, 247, 0.08)"
+      },
+      'C': {
+        title: "Columna 3 = Columna 1 + Columna 2",
+        desc: "Tres columnas en el espacio 3D, pero la tercera no añade ninguna nueva dirección — el espacio sigue estando solo en un plano.",
+        tagTitle: "PRESET C",
+        status: "Todo en un plano 2D, aunque estemos en 3D.",
+        color: "#18c5d9",
+        bg: "rgba(24, 197, 217, 0.08)"
+      }
+    };
+
+    function setPreset5(id) {
+      currentPreset5 = id;
+      document.querySelectorAll('#ejercicio-5 .tab-pill').forEach(btn => btn.classList.remove('active'));
+      document.getElementById('tab5-' + id).classList.add('active');
+      
+      const data = presets5Data[id];
+      document.getElementById('pre5-tag').textContent = data.tagTitle;
+      document.getElementById('pre5-title').textContent = data.title;
+      document.getElementById('pre5-desc').textContent = data.desc;
+      
+      const statusBox = document.getElementById('pre5-status');
+      statusBox.textContent = data.status;
+      statusBox.style.color = data.color;
+      statusBox.style.borderColor = data.color.replace(')', ', 0.4)').replace('rgb', 'rgba'); // Hack para borde
+      statusBox.style.background = data.bg;
+      
+      document.getElementById('hint5').textContent = id === 'C' ? "Arrastra para rotar la cuadrícula 3D • Scroll para Zoom" : "Visualización 2D interactiva";
+      
+      drawEx5();
+    }
+
+    canvas5.addEventListener('mousedown', (e) => {
+      if(currentPreset5 === 'C') {
+        isDragging3D_5 = true;
+        lastMouseX5 = e.clientX; lastMouseY5 = e.clientY;
+      }
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging3D_5) return;
+      rotY5 += (e.clientX - lastMouseX5) * 0.015;
+      rotX5 -= (e.clientY - lastMouseY5) * 0.015;
+      lastMouseX5 = e.clientX; lastMouseY5 = e.clientY;
+      drawEx5();
+    });
+    window.addEventListener('mouseup', () => { isDragging3D_5 = false; });
+    canvas5.addEventListener('wheel', (e) => {
+      if(currentPreset5 === 'C') {
+        e.preventDefault();
+        zoomLevel5 = Math.max(25, Math.min(150, zoomLevel5 - e.deltaY * 0.05));
+        drawEx5();
+      }
+    }, { passive: false });
+
+    function drawEx5() {
+      const w = canvas5.width, h = canvas5.height;
+      
+      if (currentPreset5 === 'A') {
+        const { cx, cy } = drawDotGrid2D(ctx5, 45);
+        const toScr = (vx, vy) => [cx + vx * 45, cy - vy * 45];
+        drawArrowClean2D(ctx5, cx, cy, toScr(1.5, 2)[0], toScr(1.5, 2)[1], '#4f7df3', 3, false);
+        drawArrowClean2D(ctx5, cx, cy, toScr(2.5, -1)[0], toScr(2.5, -1)[1], '#18c5d9', 3, false);
+        
+      } else if (currentPreset5 === 'B') {
+        const { cx, cy } = drawDotGrid2D(ctx5, 45);
+        const toScr = (vx, vy) => [cx + vx * 45, cy - vy * 45];
+        
+        ctx5.strokeStyle = 'rgba(168, 85, 247, 0.4)';
+        ctx5.lineWidth = 4;
+        ctx5.beginPath();
+        ctx5.moveTo(toScr(-10, -10)[0], toScr(-10, -10)[1]);
+        ctx5.lineTo(toScr(10, 10)[0], toScr(10, 10)[1]);
+        ctx5.stroke();
+
+        // Colapsadas en y=x
+        drawArrowClean2D(ctx5, cx, cy, toScr(1.5, 1.5)[0], toScr(1.5, 1.5)[1], '#4f7df3', 3, false);
+        drawArrowClean2D(ctx5, cx, cy, toScr(2.5, 2.5)[0], toScr(2.5, 2.5)[1], '#18c5d9', 3, false);
+
+      } else if (currentPreset5 === 'C') {
+        // Entorno 3D con plano rotatorio
+        ctx5.clearRect(0,0,w,h);
+        const grad = ctx5.createRadialGradient(w/2, h/2, 10, w/2, h/2, 240);
+        grad.addColorStop(0, '#161a29'); grad.addColorStop(1, '#0b0c10');
+        ctx5.fillStyle = grad; ctx5.fillRect(0,0,w,h);
+
+        // Vectores que definen el plano en 3D
+        const u = [2, 0, -1], v = [0, 2, 1];
+        
+        // Dibujar plano como poligono translúcido morado oscuro
+        const p1 = project3DGen(-3*u[0]-3*v[0], -3*u[1]-3*v[1], -3*u[2]-3*v[2], w, h, rotX5, rotY5, zoomLevel5);
+        const p2 = project3DGen(3*u[0]-3*v[0],  3*u[1]-3*v[1],  3*u[2]-3*v[2], w, h, rotX5, rotY5, zoomLevel5);
+        const p3 = project3DGen(3*u[0]+3*v[0],  3*u[1]+3*v[1],  3*u[2]+3*v[2], w, h, rotX5, rotY5, zoomLevel5);
+        const p4 = project3DGen(-3*u[0]+3*v[0], -3*u[1]+3*v[1], -3*u[2]+3*v[2], w, h, rotX5, rotY5, zoomLevel5);
+        
+        ctx5.fillStyle = 'rgba(168, 85, 247, 0.05)';
+        ctx5.beginPath(); ctx5.moveTo(p1[0], p1[1]); ctx5.lineTo(p2[0], p2[1]); ctx5.lineTo(p3[0], p3[1]); ctx5.lineTo(p4[0], p4[1]); ctx5.fill();
+
+        // Puntos de cuadrícula sobre el plano 3D
+        ctx5.fillStyle = 'rgba(255, 255, 255, 0.2)';
+        for(let i=-2.5; i<=2.5; i+=0.5){
+          for(let j=-2.5; j<=2.5; j+=0.5){
+             let proj = project3DGen(i*u[0]+j*v[0], i*u[1]+j*v[1], i*u[2]+j*v[2], w, h, rotX5, rotY5, zoomLevel5);
+             ctx5.beginPath(); ctx5.arc(proj[0], proj[1], 1.2, 0, Math.PI*2); ctx5.fill();
+          }
+        }
+
+        const origin = project3DGen(0, 0, 0, w, h, rotX5, rotY5, zoomLevel5);
+        const vC1 = project3DGen(u[0], u[1], u[2], w, h, rotX5, rotY5, zoomLevel5);
+        const vC2 = project3DGen(v[0], v[1], v[2], w, h, rotX5, rotY5, zoomLevel5);
+        const vC3 = project3DGen(u[0]+v[0], u[1]+v[1], u[2]+v[2], w, h, rotX5, rotY5, zoomLevel5);
+
+        drawArrow3DFull(ctx5, origin[0], origin[1], vC1[0], vC1[1], '#4f7df3', 3, false);
+        drawArrow3DFull(ctx5, origin[0], origin[1], vC2[0], vC2[1], '#18c5d9', 3, false);
+        drawArrow3DFull(ctx5, origin[0], origin[1], vC3[0], vC3[1], '#a855f7', 3, false);
+
+        ctx5.fillStyle = '#4f7df3'; ctx5.font = 'bold 12px monospace'; ctx5.fillText('c₁', vC1[0]+6, vC1[1]);
+        ctx5.fillStyle = '#18c5d9'; ctx5.font = 'bold 12px monospace'; ctx5.fillText('c₂', vC2[0]+6, vC2[1]);
+        ctx5.fillStyle = '#a855f7'; ctx5.font = 'bold 12px monospace'; ctx5.fillText('c₃ = c₁ + c₂', vC3[0]+6, vC3[1]);
+      }
+    }
+
+
+    // Inicializar todo
+    updateEx1();
+    updateEx2();
+    updateEx3();
+    drawEx4();
+    setPreset5('A'); // Inicia Ejercicio 5
+
+  </script>
+</body>
+</html>
