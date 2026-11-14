@@ -443,7 +443,7 @@
     </div>
   </section>
 
-  <!-- PANTALLA 2: EJERCICIO 2 (MISMO SISTEMA. DOS PLANTAS.) -->
+  <!-- PANTALLA 2: EJERCICIO 2 -->
   <section class="exercise-section" id="ejercicio-2">
     <div style="width: 100%;">
       <div style="text-align: center; margin-bottom: 32px;">
@@ -500,7 +500,7 @@
     </div>
   </section>
 
-  <!-- PANTALLA 3: EJERCICIO 3 (LA MISMA IDEA, EN 3D) -->
+  <!-- PANTALLA 3: EJERCICIO 3 -->
   <section class="exercise-section" id="ejercicio-3">
     <div class="exercise-grid">
       <div class="left-col">
@@ -549,7 +549,7 @@
     </div>
   </section>
 
-  <!-- PANTALLA 4: EJERCICIO 4 (EXPLORADOR DE ESPACIO DE COLUMNAS) -->
+  <!-- PANTALLA 4: EJERCICIO 4 -->
   <section class="exercise-section" id="ejercicio-4">
     <div class="exercise-grid">
       <div class="left-col">
@@ -600,8 +600,8 @@
     </div>
   </section>
 
-  <!-- PANTALLA 5: EJERCICIO 5 (INDEPENDENCIA Y COLAPSO) -->
-  <section class="exercise-section" id="ejercicio-5" style="border-bottom: none; flex-direction: column; align-items: stretch;">
+  <!-- PANTALLA 5: EJERCICIO 5 -->
+  <section class="exercise-section" id="ejercicio-5" style="flex-direction: column; align-items: stretch;">
     <div style="width: 100%;">
       
       <div style="text-align: center; margin-bottom: 30px;">
@@ -642,7 +642,485 @@
     </div>
   </section>
 
+  <!-- PANTALLA 6: EJERCICIO 6 (EXPLORADOR DIMENSIONAL) -->
+  <section class="exercise-section" id="ejercicio-6" style="border-bottom: none;">
+    <div style="width: 100%;">
+      
+      <div style="text-align: center; margin-bottom: 30px;">
+        <div class="sec-tag">06 — EXPLORADOR DIMENSIONAL</div>
+        <h2 style="font-size: 2.2rem; margin-bottom: 12px;">Cada dimensión, la misma idea.</h2>
+        <p class="exercise-desc" style="max-width: 780px; margin: 0 auto 24px;">
+          Visualiza cómo se comportan los vectores desde 2 hasta 9 dimensiones. <strong>Arrastra el ratón sobre el canvas para rotar la vista espacial. ¡Usa la rueda del ratón para hacer zoom!</strong>
+        </p>
+      </div>
 
+      <div class="exercise-grid">
+        <div class="left-col">
+          <div class="controls-card">
+            
+            <!-- Selector de Dimensiones (Inicia en 2 por defecto) -->
+            <div class="slider-group">
+              <div class="slider-header" style="color: var(--accent-purple);">
+                <span>DIMENSIONES</span><span id="val-dim6" style="font-weight: bold; font-size: 1rem;">2</span>
+              </div>
+              <input type="range" class="slider-purple" id="slider-dim6" min="2" max="9" step="1" value="2">
+            </div>
+
+            <!-- Controles x/y -->
+            <div style="border-top: 1px solid var(--border-color); margin: 16px 0; padding-top: 16px;">
+              <div class="slider-group">
+                <div class="slider-header" style="color: var(--accent-blue);">
+                  <span>x</span><span id="val-x6">2,00</span>
+                </div>
+                <input type="range" class="slider-blue" id="slider-x6" min="-4" max="4" step="0.05" value="2.00">
+              </div>
+
+              <div class="slider-group" style="margin-top: 14px;">
+                <div class="slider-header" style="color: var(--accent-cyan);">
+                  <span>y</span><span id="val-y6">1,92</span>
+                </div>
+                <input type="range" class="slider-cyan" id="slider-y6" min="-4" max="4" step="0.05" value="1.92">
+              </div>
+            </div>
+
+            <div class="status-card" id="status-box-6" style="margin-top: 16px; border-color: rgba(24, 197, 217, 0.4); color: #18c5d9; background: rgba(24, 197, 217, 0.08);">
+              ⚡ &nbsp;Espacio de <span id="txt-dim-status">2</span> dimensiones activo.
+            </div>
+
+            <!-- Acordeón para explicación dinámica -->
+            <details style="margin-top: 16px; background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); border-radius: 8px; padding: 12px; cursor: pointer;">
+              <summary style="color: var(--text-muted); font-size: 0.85rem; font-weight: 600; outline: none;">¿Qué significa realmente esto? ▾</summary>
+              <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #2b3245;">
+                <h4 style="font-size: 0.9rem; margin-bottom: 8px; color: var(--accent-blue);">¿Qué significa realmente <span id="dim-title-tag">2</span>D?</h4>
+                <p class="exercise-desc" id="dim-explanation" style="font-size: 0.8rem; margin-bottom: 0;">
+                  Explicación...
+                </p>
+              </div>
+            </details>
+            
+          </div>
+        </div>
+
+        <div class="right-col">
+          <div class="canvas-card" style="padding: 0; overflow: hidden; background: #07080a;">
+            <canvas id="canvas6" width="500" height="480" style="border-radius: 16px; cursor: grab;"></canvas>
+          </div>
+          <div class="canvas-hint" id="hint6">Rueda para Zoom • Arrastra para rotar</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+<!-- PANTALLA 7: EJERCICIO 7 (ALCANCE EN 3D) -->
+  <section class="exercise-section" id="ejercicio-7" style="border-bottom: none;">
+    <div class="exercise-grid">
+      <div class="left-col">
+        <div>
+          <div class="sec-tag">07 — ALCANCE</div>
+          <h2>¿Pueden estas columnas llegar a b?</h2>
+          <p class="exercise-desc">
+            Dos direcciones aleatorias en el espacio 3D abarcan, como mucho, un plano. Mira los vectores y adivina si el vector blanco <strong>b</strong> está dentro de ese plano antes de revelar la respuesta.
+          </p>
+        </div>
+
+        <div class="controls-card">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
+            <button class="btn-action" id="btn7-yes" onclick="selectAnswer7(true)" style="justify-content: center; padding: 12px 10px;">
+              Sí, accesible
+            </button>
+            <button class="btn-action" id="btn7-no" onclick="selectAnswer7(false)" style="justify-content: center; padding: 12px 10px;">
+              No, fuera de espacio
+            </button>
+          </div>
+
+          <button class="btn-action" id="btn7-reveal" onclick="revealAnswer7()" disabled style="width: 100%; justify-content: center; padding: 11px; opacity: 0.45; cursor: not-allowed; margin-bottom: 12px;">
+            Revelación
+          </button>
+
+          <div>
+            <button class="btn-action" onclick="newRound7()" style="font-size: 0.72rem; padding: 7px 12px;">
+              ↻ Nueva ronda
+            </button>
+          </div>
+        </div>
+
+        <div class="status-card" id="status-box-7" style="display: none;"></div>
+      </div>
+
+      <div class="right-col">
+        <div class="canvas-card" id="card-canvas-7">
+          <canvas id="canvas7" width="480" height="450"></canvas>
+        </div>
+        <div class="canvas-hint">Arrastra para rotar el plano 3D y verlo de perfil • Rueda para Zoom</div>
+      </div>
+    </div>
+  </section>
+  <!-- PANTALLA 8: EJERCICIO 8 (MATRIX PLAYGROUND) -->
+  <section class="exercise-section" id="ejercicio-8" style="border-bottom: none;">
+    <div style="width: 100%;">
+      <div style="margin-bottom: 26px;">
+        <div class="sec-tag">08 — MATRIX PLAYGROUND</div>
+        <h2 style="font-size: 2.1rem; margin-bottom: 10px;">Construye cualquier matriz. Mira qué te dice.</h2>
+        <p class="exercise-desc" style="max-width: 620px;">
+          Edita cualquier entrada directamente. Cada estadística que aparece a continuación — rango, determinante, independencia, alcance — se recalcula en tiempo real a partir de los números que estás mirando.
+        </p>
+      </div>
+
+      <!-- Selector de tamaño 2 a 9 -->
+      <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 20px; flex-wrap: wrap;">
+        <span style="font-family: monospace; font-size: 0.72rem; letter-spacing: 1.5px; color: var(--text-muted);">TAMAÑO</span>
+        <div id="size-buttons-8" style="display: flex; gap: 6px; flex-wrap: wrap;"></div>
+      </div>
+
+      <!-- Contenedor principal de 2 columnas -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 22px; align-items: start;">
+        
+        <!-- Columna Izquierda: Matriz A, Objetivo b y Botones -->
+        <div class="controls-card" style="padding: 24px;">
+          <div id="mat8-subtitle" style="font-family: monospace; font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.8px; margin-bottom: 12px;">
+            MATRIZ A · 2×2 (columnas c1... c2)
+          </div>
+
+          <div style="overflow-x: auto; padding-bottom: 6px; margin-bottom: 18px;">
+            <div style="display: inline-flex; align-items: center; gap: 10px;">
+              <span style="font-size: 2.6rem; font-weight: 200; color: #475569; line-height: 1;">[</span>
+              <div id="mat8-grid" style="display: grid; gap: 8px;"></div>
+              <span style="font-size: 2.6rem; font-weight: 200; color: #475569; line-height: 1;">]</span>
+            </div>
+          </div>
+
+          <div style="font-family: monospace; font-size: 0.7rem; color: var(--text-muted); letter-spacing: 0.8px; margin-bottom: 12px;">
+            OBJETIVO b
+          </div>
+
+          <div style="overflow-x: auto; padding-bottom: 6px; margin-bottom: 22px;">
+            <div style="display: inline-flex; align-items: center; gap: 10px;">
+              <span style="font-size: 2.6rem; font-weight: 200; color: #475569; line-height: 1;">[</span>
+              <div id="vec8-grid" style="display: grid; gap: 8px;"></div>
+              <span style="font-size: 2.6rem; font-weight: 200; color: #475569; line-height: 1;">]</span>
+            </div>
+          </div>
+
+          <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+            <button class="btn-action" onclick="randomMatrix8()">🔀 Matriz aleatoria</button>
+            <button class="btn-action" onclick="resetMatrix8()">↺ Reinicio</button>
+            <button class="btn-action" onclick="exportJSON8()">⬇ Exportar JSON</button>
+            <button class="btn-action" onclick="document.getElementById('import8-file').click()">⬆ Importar JSON</button>
+            <input type="file" id="import8-file" accept=".json" style="display: none;" onchange="importJSON8(event)">
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Tarjetas de Estadísticas en tiempo real -->
+        <div style="display: flex; flex-direction: column; gap: 14px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div class="controls-card" style="padding: 18px;">
+              <div style="font-family: monospace; font-size: 0.65rem; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 8px;">RANGO</div>
+              <div id="stat8-rank" style="font-family: monospace; font-size: 1.05rem; font-weight: 700; color: var(--accent-green);">2 / 2</div>
+            </div>
+            <div class="controls-card" style="padding: 18px;">
+              <div style="font-family: monospace; font-size: 0.65rem; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 8px;">COLUMNAS INDEPENDIENTES</div>
+              <div id="stat8-indep" style="font-family: monospace; font-size: 1.05rem; font-weight: 700; color: var(--accent-cyan);">Sí</div>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div class="controls-card" style="padding: 18px;">
+              <div style="font-family: monospace; font-size: 0.65rem; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 8px;">DETERMINANTE</div>
+              <div id="stat8-det" style="font-family: monospace; font-size: 1.05rem; font-weight: 700; color: var(--accent-blue);">-1.8</div>
+            </div>
+            <div class="controls-card" style="padding: 18px;">
+              <div style="font-family: monospace; font-size: 0.65rem; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 8px;">AX (TODOS UNOS)</div>
+              <div id="stat8-ax" style="font-family: monospace; font-size: 0.95rem; font-weight: 700; color: var(--accent-cyan); word-break: break-word;">[-2.9, 0.1]</div>
+            </div>
+          </div>
+
+          <div class="controls-card" style="padding: 18px;">
+            <div style="font-family: monospace; font-size: 0.65rem; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 8px;">¿EXISTE ALGUNA SOLUCIÓN PARA B?</div>
+            <div id="stat8-sol" style="font-family: monospace; font-size: 1.05rem; font-weight: 700; color: var(--accent-green);">Sí</div>
+          </div>
+
+          <div class="controls-card" style="padding: 18px;">
+            <div style="font-family: monospace; font-size: 0.65rem; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 8px;">TRAMO</div>
+            <div id="stat8-span" style="font-family: monospace; font-size: 1.05rem; font-weight: 700; color: var(--accent-purple);">Todo el espacio</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- PANTALLA 9: EJERCICIO 9 (CONSTRUCTOR DE COMBINACIONES LINEALES) -->
+  <section class="exercise-section" id="ejercicio-9" style="border-bottom: none;">
+    <div class="exercise-grid">
+      <div class="left-col">
+        <div>
+          <div class="sec-tag">09 — CONSTRUCTOR DE COMBINACIONES LINEALES</div>
+          <h2>Construye la suma, paso a paso.</h2>
+          <p class="exercise-desc">
+            Elige una columna, elige hasta dónde escalarla y añádela a la cadena. Cada paso se registra — deshacer, volver a hacer o reproducir toda la secuencia para ver cómo la combinación se ensambla sola.
+          </p>
+        </div>
+
+        <div class="controls-card">
+          <!-- Columnas disponibles -->
+          <div style="margin-bottom: 16px; font-family: monospace;">
+            <div class="matrix-label">COLUMNAS</div>
+            <div style="display: flex; gap: 16px; flex-wrap: wrap;">
+              <div class="matrix-bracket">
+                <span class="bracket-sym">[</span>
+                <div class="vec-vals" style="color: var(--accent-blue);">
+                  <span>2</span>
+                  <span>-1</span>
+                </div>
+                <span class="bracket-sym">]</span>
+              </div>
+              <div class="matrix-bracket">
+                <span class="bracket-sym">[</span>
+                <div class="vec-vals" style="color: var(--accent-cyan);">
+                  <span>-1</span>
+                  <span>2</span>
+                </div>
+                <span class="bracket-sym">]</span>
+              </div>
+              <div class="matrix-bracket">
+                <span class="bracket-sym">[</span>
+                <div class="vec-vals" style="color: var(--accent-purple);">
+                  <span>1</span>
+                  <span>1</span>
+                </div>
+                <span class="bracket-sym">]</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Objetivo b -->
+          <div style="margin-bottom: 18px; font-family: monospace;">
+            <div class="matrix-label">OBJETIVO b</div>
+            <div class="matrix-bracket">
+              <span class="bracket-sym">[</span>
+              <div class="vec-vals">
+                <span>0</span>
+                <span>3</span>
+              </div>
+              <span class="bracket-sym">]</span>
+            </div>
+          </div>
+
+          <!-- Selector de columna + Slider de escala -->
+          <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 16px; flex-wrap: wrap;">
+            <div style="display: flex; gap: 6px;">
+              <button class="btn-action" id="btn9-c1" onclick="selectCol9('c1')" style="padding: 6px 11px; border-color: var(--accent-blue); background: rgba(79, 125, 243, 0.16); color: var(--accent-blue);">c₁</button>
+              <button class="btn-action" id="btn9-c2" onclick="selectCol9('c2')" style="padding: 6px 11px;">c₂</button>
+              <button class="btn-action" id="btn9-c3" onclick="selectCol9('c3')" style="padding: 6px 11px;">c₃</button>
+            </div>
+
+            <div style="flex: 1; min-width: 150px; display: flex; align-items: center; gap: 10px; font-family: monospace; font-size: 0.72rem;">
+              <span style="color: var(--text-muted);">ESCALA</span>
+              <input type="range" class="slider-blue" id="slider-scale9" min="-3" max="3" step="0.1" value="1.0" style="flex: 1;">
+              <span id="val-scale9" style="min-width: 34px; text-align: right;">1,0</span>
+            </div>
+          </div>
+
+          <!-- Fila 1 de botones: Añadir, Deshacer, Rehacer -->
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 8px;">
+            <button class="btn-action" id="btn9-add" onclick="addStep9()" style="background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); color: #090a0e; border: none; font-weight: 700;">
+              + Añadir paso
+            </button>
+            <button class="btn-action" id="btn9-undo" onclick="undoStep9()" disabled style="opacity: 0.45; cursor: not-allowed;">
+              ↶ Deshacer
+            </button>
+            <button class="btn-action" id="btn9-redo" onclick="redoStep9()" disabled style="opacity: 0.45; cursor: not-allowed;">
+              ↷ Rehacer
+            </button>
+          </div>
+
+          <!-- Fila 2 de botones: Reproducir, Limpiar, Captura -->
+          <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px;">
+            <button class="btn-action" id="btn9-replay" onclick="replaySteps9()" disabled style="opacity: 0.45; cursor: not-allowed;">
+              ▷ Reproducir
+            </button>
+            <button class="btn-action" id="btn9-clear" onclick="clearSteps9()" disabled style="opacity: 0.45; cursor: not-allowed;">
+              ↺ Limpiar
+            </button>
+            <button class="btn-action" onclick="screenshotCanvas9()">
+              📷 Captura de pantalla
+            </button>
+          </div>
+
+          <!-- Registro de pasos de la cadena -->
+          <div id="chain-log-9" style="background: #0d0f15; border: 1px solid var(--border-color); border-radius: 10px; padding: 12px 14px; font-family: monospace; font-size: 0.76rem; color: var(--text-muted); line-height: 1.6;">
+            Añade tu primer paso para iniciar la cadena.
+          </div>
+        </div>
+      </div>
+
+      <div class="right-col">
+        <div class="canvas-card" id="card-canvas-9">
+          <canvas id="canvas9" width="480" height="450"></canvas>
+        </div>
+        <div class="canvas-hint">La línea punteada muestra una vista previa del siguiente paso antes de añadirlo</div>
+      </div>
+    </div>
+  </section>
+  <!-- PANTALLA 10: EJERCICIO 10 (MODO DE APRENDIZAJE) -->
+  <section class="exercise-section" id="ejercicio-10" style="border-bottom: none;">
+    <div style="width: 100%;">
+      <div style="margin-bottom: 20px;">
+        <div class="sec-tag">10 — MODO DE APRENDIZAJE</div>
+        <h2 style="font-size: 2.1rem; margin-bottom: 10px;">Apréndelo, pruébalo, demuéstralo.</h2>
+        <p class="exercise-desc" style="max-width: 640px;">
+          Un recorrido guiado del ejemplo exacto de la Sección 1, un cuestionario conceptual y un desafío computacional — tres formas de comprobar que la Imagen de la Columna ha funcionado realmente.
+        </p>
+      </div>
+
+      <!-- Pestañas: Aprende | Quiz | Desafío -->
+      <div style="display: flex; gap: 8px; margin-bottom: 24px; flex-wrap: wrap;">
+        <button class="btn-action" id="tab10-learn" onclick="switchMode10('learn')" style="padding: 8px 14px; border-color: #64748b; background: #1e2230; color: #f8fafc;">
+          🎓 Aprende
+        </button>
+        <button class="btn-action" id="tab10-quiz" onclick="switchMode10('quiz')" style="padding: 8px 14px;">
+          ⓘ Quiz
+        </button>
+        <button class="btn-action" id="tab10-challenge" onclick="switchMode10('challenge')" style="padding: 8px 14px;">
+          ⚔ Desafío
+        </button>
+      </div>
+
+      <!-- MODO 1: APRENDE (RECORRIDO GUIADO EN 6 PASOS) -->
+      <div id="panel10-learn" class="exercise-grid">
+        <div class="left-col">
+          <div class="controls-card" style="padding: 24px;">
+            <div id="learn10-step-tag" style="font-family: monospace; font-size: 0.7rem; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 10px;">
+              PASO 1 / 6
+            </div>
+            <h3 id="learn10-title" style="font-size: 1.25rem; margin-bottom: 10px; color: #f8fafc;">
+              Esta es la Columna 1.
+            </h3>
+            <p id="learn10-desc" style="font-size: 0.88rem; color: #94a3b8; line-height: 1.6; margin-bottom: 22px;">
+              c₁ = (2, −1). Cada columna de una matriz es solo una dirección y una distancia — un lugar al que puedes llegar caminando desde el origen.
+            </p>
+
+            <div style="display: flex; gap: 8px; align-items: center; flex-wrap: wrap;">
+              <button class="btn-action" id="btn10-prev" onclick="stepLearn10(-1)" disabled style="opacity: 0.45; cursor: not-allowed;">
+                ‹ Atrás
+              </button>
+              <button class="btn-action" id="btn10-next" onclick="stepLearn10(1)" style="flex: 1; min-width: 130px; justify-content: center; background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); color: #090a0e; border: none; font-weight: 700;">
+                Siguiente ›
+              </button>
+              <button class="btn-action" onclick="resetLearn10()">
+                ↺ Reinicio
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-col">
+          <div class="canvas-card" id="card-canvas-10a">
+            <canvas id="canvas10a" width="480" height="450"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODO 2: QUIZ CONCEPTUAL (6 PREGUNTAS) -->
+      <div id="panel10-quiz" style="display: none; max-width: 620px;">
+        <div style="display: flex; justify-content: space-between; align-items: center; font-family: monospace; font-size: 0.72rem; color: var(--text-muted); margin-bottom: 10px;">
+          <span id="quiz10-progress">Pregunta 1 / 6</span>
+          <span id="quiz10-score">Sesión: 0 acertado · Total: 0/0</span>
+        </div>
+
+        <div class="controls-card" style="padding: 24px;">
+          <h3 id="quiz10-question" style="font-size: 1.05rem; color: #f8fafc; margin-bottom: 18px; line-height: 1.5;">
+            En la Imagen de Columnas, ¿qué calcula realmente Ax?
+          </h3>
+
+          <div id="quiz10-options" style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 18px;"></div>
+
+          <div id="quiz10-feedback" style="display: none; font-size: 0.82rem; padding: 10px 12px; border-radius: 8px; margin-bottom: 16px; line-height: 1.5;"></div>
+
+          <button class="btn-action" id="btn10-quiz-next" onclick="nextQuiz10()" disabled style="opacity: 0.45; cursor: not-allowed;">
+            Siguiente pregunta ›
+          </button>
+        </div>
+      </div>
+
+      <!-- MODO 3: DESAFÍO COMPUTACIONAL -->
+      <div id="panel10-challenge" class="exercise-grid" style="display: none;">
+        <div class="left-col">
+          <div class="controls-card" style="padding: 24px;">
+            <div style="font-family: monospace; font-size: 0.68rem; color: var(--text-muted); letter-spacing: 1px; margin-bottom: 14px;">
+              ENCONTRAR x Y y TALES QUE Ax = b
+            </div>
+
+            <!-- Ecuación matricial -->
+            <div style="display: flex; align-items: center; gap: 14px; font-family: monospace; margin-bottom: 22px; flex-wrap: wrap;">
+              <div class="matrix-bracket">
+                <span class="bracket-sym" style="font-size: 2.2rem;">[</span>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; text-align: right; font-size: 0.95rem; font-weight: 700;">
+                  <span id="ch10-a11" style="color: var(--accent-blue);">1</span>
+                  <span id="ch10-a12" style="color: var(--accent-cyan);">3</span>
+                  <span id="ch10-a21" style="color: var(--accent-blue);">2</span>
+                  <span id="ch10-a22" style="color: var(--accent-cyan);">2</span>
+                </div>
+                <span class="bracket-sym" style="font-size: 2.2rem;">]</span>
+              </div>
+
+              <span style="color: var(--text-muted); font-size: 0.9rem;">· x =</span>
+
+              <div class="matrix-bracket">
+                <span class="bracket-sym" style="font-size: 2.2rem;">[</span>
+                <div style="display: flex; flex-direction: column; gap: 4px; text-align: right; font-size: 0.95rem; font-weight: 700; color: #f8fafc;">
+                  <span id="ch10-b1">4</span>
+                  <span id="ch10-b2">0</span>
+                </div>
+                <span class="bracket-sym" style="font-size: 2.2rem;">]</span>
+              </div>
+            </div>
+
+            <!-- Sliders x e y -->
+            <div class="slider-row">
+              <div class="slider-header">
+                <span style="color: var(--accent-blue); font-weight: 700;">x</span>
+                <span id="val10-x">0</span>
+              </div>
+              <input type="range" class="slider-blue" id="slider10-x" min="-4" max="4" step="0.5" value="0">
+            </div>
+
+            <div class="slider-row" style="margin-bottom: 18px;">
+              <div class="slider-header">
+                <span style="color: var(--accent-cyan); font-weight: 700;">y</span>
+                <span id="val10-y">0</span>
+              </div>
+              <input type="range" class="slider-cyan" id="slider10-y" min="-4" max="4" step="0.5" value="0">
+            </div>
+
+            <!-- Racha y Mejor -->
+            <div style="display: flex; justify-content: space-between; font-family: monospace; font-size: 0.74rem; color: var(--text-muted); margin-bottom: 14px;">
+              <span>Racha: <strong id="ch10-streak" style="color: #f8fafc;">0</strong></span>
+              <span>Mejor: <strong id="ch10-best" style="color: #f8fafc;">0</strong></span>
+            </div>
+
+            <div id="ch10-feedback" style="display: none; font-family: monospace; font-size: 0.76rem; padding: 9px 12px; border-radius: 8px; margin-bottom: 12px;"></div>
+
+            <!-- Botones Comprobar y Nuevo desafío -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <button class="btn-action" id="btn10-check" onclick="checkChallenge10()" style="justify-content: center; padding: 10px; background: linear-gradient(90deg, var(--accent-blue), var(--accent-purple)); color: #090a0e; border: none; font-weight: 700;">
+                Comprobar
+              </button>
+              <button class="btn-action" onclick="newChallenge10(false)" style="justify-content: center; padding: 10px;">
+                Nuevo desafío
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="right-col">
+          <div class="canvas-card" id="card-canvas-10c">
+            <canvas id="canvas10c" width="480" height="450"></canvas>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
   <script>
     function formatNum(n) {
       return n.toFixed(2).replace('.', ',');
@@ -1171,13 +1649,12 @@
     }
 
     /* =========================================================================
-       EJERCICIO 5: INDEPENDENCIA (NUEVO)
+       EJERCICIO 5: INDEPENDENCIA
        ========================================================================= */
     const canvas5 = document.getElementById('canvas5');
     const ctx5 = canvas5.getContext('2d');
     let currentPreset5 = 'A';
     
-    // Variables para el 3D del Preset C
     let rotX5 = 0.55, rotY5 = 0.65, zoomLevel5 = 75;
     let isDragging3D_5 = false;
     let lastMouseX5 = 0, lastMouseY5 = 0;
@@ -1222,7 +1699,7 @@
       const statusBox = document.getElementById('pre5-status');
       statusBox.textContent = data.status;
       statusBox.style.color = data.color;
-      statusBox.style.borderColor = data.color.replace(')', ', 0.4)').replace('rgb', 'rgba'); // Hack para borde
+      statusBox.style.borderColor = data.color.replace(')', ', 0.4)').replace('rgb', 'rgba'); 
       statusBox.style.background = data.bg;
       
       document.getElementById('hint5').textContent = id === 'C' ? "Arrastra para rotar la cuadrícula 3D • Scroll para Zoom" : "Visualización 2D interactiva";
@@ -1254,48 +1731,34 @@
 
     function drawEx5() {
       const w = canvas5.width, h = canvas5.height;
-      
       if (currentPreset5 === 'A') {
         const { cx, cy } = drawDotGrid2D(ctx5, 45);
         const toScr = (vx, vy) => [cx + vx * 45, cy - vy * 45];
         drawArrowClean2D(ctx5, cx, cy, toScr(1.5, 2)[0], toScr(1.5, 2)[1], '#4f7df3', 3, false);
         drawArrowClean2D(ctx5, cx, cy, toScr(2.5, -1)[0], toScr(2.5, -1)[1], '#18c5d9', 3, false);
-        
       } else if (currentPreset5 === 'B') {
         const { cx, cy } = drawDotGrid2D(ctx5, 45);
         const toScr = (vx, vy) => [cx + vx * 45, cy - vy * 45];
-        
         ctx5.strokeStyle = 'rgba(168, 85, 247, 0.4)';
         ctx5.lineWidth = 4;
         ctx5.beginPath();
         ctx5.moveTo(toScr(-10, -10)[0], toScr(-10, -10)[1]);
         ctx5.lineTo(toScr(10, 10)[0], toScr(10, 10)[1]);
         ctx5.stroke();
-
-        // Colapsadas en y=x
         drawArrowClean2D(ctx5, cx, cy, toScr(1.5, 1.5)[0], toScr(1.5, 1.5)[1], '#4f7df3', 3, false);
         drawArrowClean2D(ctx5, cx, cy, toScr(2.5, 2.5)[0], toScr(2.5, 2.5)[1], '#18c5d9', 3, false);
-
       } else if (currentPreset5 === 'C') {
-        // Entorno 3D con plano rotatorio
         ctx5.clearRect(0,0,w,h);
         const grad = ctx5.createRadialGradient(w/2, h/2, 10, w/2, h/2, 240);
         grad.addColorStop(0, '#161a29'); grad.addColorStop(1, '#0b0c10');
         ctx5.fillStyle = grad; ctx5.fillRect(0,0,w,h);
-
-        // Vectores que definen el plano en 3D
         const u = [2, 0, -1], v = [0, 2, 1];
-        
-        // Dibujar plano como poligono translúcido morado oscuro
         const p1 = project3DGen(-3*u[0]-3*v[0], -3*u[1]-3*v[1], -3*u[2]-3*v[2], w, h, rotX5, rotY5, zoomLevel5);
         const p2 = project3DGen(3*u[0]-3*v[0],  3*u[1]-3*v[1],  3*u[2]-3*v[2], w, h, rotX5, rotY5, zoomLevel5);
         const p3 = project3DGen(3*u[0]+3*v[0],  3*u[1]+3*v[1],  3*u[2]+3*v[2], w, h, rotX5, rotY5, zoomLevel5);
         const p4 = project3DGen(-3*u[0]+3*v[0], -3*u[1]+3*v[1], -3*u[2]+3*v[2], w, h, rotX5, rotY5, zoomLevel5);
-        
         ctx5.fillStyle = 'rgba(168, 85, 247, 0.05)';
         ctx5.beginPath(); ctx5.moveTo(p1[0], p1[1]); ctx5.lineTo(p2[0], p2[1]); ctx5.lineTo(p3[0], p3[1]); ctx5.lineTo(p4[0], p4[1]); ctx5.fill();
-
-        // Puntos de cuadrícula sobre el plano 3D
         ctx5.fillStyle = 'rgba(255, 255, 255, 0.2)';
         for(let i=-2.5; i<=2.5; i+=0.5){
           for(let j=-2.5; j<=2.5; j+=0.5){
@@ -1303,30 +1766,1516 @@
              ctx5.beginPath(); ctx5.arc(proj[0], proj[1], 1.2, 0, Math.PI*2); ctx5.fill();
           }
         }
-
         const origin = project3DGen(0, 0, 0, w, h, rotX5, rotY5, zoomLevel5);
         const vC1 = project3DGen(u[0], u[1], u[2], w, h, rotX5, rotY5, zoomLevel5);
         const vC2 = project3DGen(v[0], v[1], v[2], w, h, rotX5, rotY5, zoomLevel5);
         const vC3 = project3DGen(u[0]+v[0], u[1]+v[1], u[2]+v[2], w, h, rotX5, rotY5, zoomLevel5);
-
         drawArrow3DFull(ctx5, origin[0], origin[1], vC1[0], vC1[1], '#4f7df3', 3, false);
-        drawArrow3DFull(ctx5, origin[0], origin[1], vC2[0], vC2[1], '#18c5d9', 3, false);
-        drawArrow3DFull(ctx5, origin[0], origin[1], vC3[0], vC3[1], '#a855f7', 3, false);
-
+        drawArrowClean2D(ctx5, origin[0], origin[1], vC2[0], vC2[1], '#18c5d9', 3, false);
+        drawArrowClean2D(ctx5, origin[0], origin[1], vC3[0], vC3[1], '#a855f7', 3, false);
         ctx5.fillStyle = '#4f7df3'; ctx5.font = 'bold 12px monospace'; ctx5.fillText('c₁', vC1[0]+6, vC1[1]);
         ctx5.fillStyle = '#18c5d9'; ctx5.font = 'bold 12px monospace'; ctx5.fillText('c₂', vC2[0]+6, vC2[1]);
         ctx5.fillStyle = '#a855f7'; ctx5.font = 'bold 12px monospace'; ctx5.fillText('c₃ = c₁ + c₂', vC3[0]+6, vC3[1]);
       }
     }
+/* =========================================================================
+       EJERCICIO 6: EXPLORADOR DIMENSIONAL COMPLETO
+       ========================================================================= */
+    const canvas6 = document.getElementById('canvas6');
+    const ctx6 = canvas6.getContext('2d');
 
+    let dim6 = 2;
+    let x6 = 2.0, y6 = 1.92;
+    let rotX6 = 0, rotY6 = 0;
+    let isDragging6 = false;
+    let lastMouseX6 = 0, lastMouseY6 = 0;
+    let zoomLevel6 = 1.0;
 
-    // Inicializar todo
-    updateEx1();
-    updateEx2();
-    updateEx3();
-    drawEx4();
-    setPreset5('A'); // Inicia Ejercicio 5
+    const sDim6 = document.getElementById('slider-dim6'), vDim6 = document.getElementById('val-dim6');
+    const sx6 = document.getElementById('slider-x6'), sy6 = document.getElementById('slider-y6');
+    const vx6 = document.getElementById('val-x6'), vy6 = document.getElementById('val-y6');
+    const txtDimStatus = document.getElementById('txt-dim-status');
+    const dimTitleTag = document.getElementById('dim-title-tag');
+    const dimExplanation = document.getElementById('dim-explanation');
+    const hint6 = document.getElementById('hint6');
 
+    const dimTexts6 = {
+      2: "En 2D, cada vector es una lista de 2 números que define una dirección en un plano. Combinar dos columnas significa avanzar cierta distancia en una dirección y luego en la otra para alcanzar cualquier punto.",
+      3: "En 3D, cada vector tiene 3 componentes (ancho, largo y alto) en el espacio físico que conocemos. Necesitas tres direcciones independientes para poder alcanzar cualquier punto del volumen.",
+      4: "En 4D, un vector es simplemente una lista de 4 números. Aunque nuestros ojos no puedan imaginar una cuarta dirección perpendicular, el álgebra no cambia: sumar y escalar funciona entrada por entrada.",
+      5: "En 5D, cada columna tiene 5 componentes. En la práctica (como en física o ciencia de datos), cada dimensión representa una variable distinta; combinar vectores sigue siendo sumar lista con lista.",
+      6: "En 6D, operamos con vectores de 6 coordenadas. Aquí usamos una representación visual para intuir su forma, pero resolver Ax = b sigue siendo encontrar cuánto avanzar por cada una de las 6 columnas.",
+      7: "En 7D, un vector tiene 7 entradas. 'Escalar' sigue significando multiplicar sus 7 números por el mismo factor, y 'sumar' sigue siendo emparejar cada posición de la lista sin importar que no podamos dibujarlo.",
+      8: "En 8D, cada dirección apunta en un espacio de 8 coordenadas. La geometría se vuelve completamente abstracta, pero las reglas de combinación lineal e independencia funcionan igual que en un plano.",
+      9: "En 9D, cada vector es una lista ordenada de 9 números. Esta es la gran ventaja del álgebra lineal: una vez entiendes la idea en 2D y 3D, las mismas reglas sirven para 9 o un millón de dimensiones."
+    };
+
+    function updateEx6() {
+      if (!sDim6) return;
+      sDim6.value = dim6;
+      vDim6.textContent = dim6;
+      if (txtDimStatus) txtDimStatus.textContent = dim6;
+      sx6.value = x6;
+      sy6.value = y6;
+      vx6.textContent = formatNum(x6);
+      vy6.textContent = formatNum(y6);
+      if (dimTitleTag) dimTitleTag.textContent = dim6;
+      if (dimExplanation) dimExplanation.textContent = dimTexts6[dim6] || dimTexts6[2];
+      if (hint6) {
+        hint6.textContent = dim6 === 2
+          ? "Rueda para Zoom • Plano cartesiano en 2D"
+          : "Rueda para Zoom • Arrastra para rotar ángulos";
+      }
+      drawEx6();
+    }
+
+    if (sDim6) {
+      sDim6.addEventListener('input', (e) => {
+        dim6 = parseInt(e.target.value);
+        rotX6 = 0;
+        rotY6 = 0;
+        updateEx6();
+      });
+      sx6.addEventListener('input', (e) => { x6 = parseFloat(e.target.value); updateEx6(); });
+      sy6.addEventListener('input', (e) => { y6 = parseFloat(e.target.value); updateEx6(); });
+
+      canvas6.addEventListener('mousedown', (e) => {
+        isDragging6 = true;
+        lastMouseX6 = e.clientX;
+        lastMouseY6 = e.clientY;
+        canvas6.style.cursor = 'grabbing';
+      });
+
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging6) return;
+        rotY6 += (e.clientX - lastMouseX6) * 0.015;
+        rotX6 -= (e.clientY - lastMouseY6) * 0.015;
+        lastMouseX6 = e.clientX;
+        lastMouseY6 = e.clientY;
+        drawEx6();
+      });
+
+      window.addEventListener('mouseup', () => {
+        isDragging6 = false;
+        canvas6.style.cursor = 'grab';
+      });
+
+      canvas6.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        zoomLevel6 = Math.max(0.35, Math.min(3.0, zoomLevel6 - e.deltaY * 0.0015));
+        drawEx6();
+      }, { passive: false });
+    }
+
+    function projectPoint6(x, y, z, w, h) {
+      let x1 = x * Math.cos(rotY6) + z * Math.sin(rotY6);
+      let y1 = y;
+      let z1 = -x * Math.sin(rotY6) + z * Math.cos(rotY6);
+      let x2 = x1;
+      let y2 = y1 * Math.cos(rotX6) - z1 * Math.sin(rotX6);
+      let z2 = y1 * Math.sin(rotX6) + z1 * Math.cos(rotX6);
+      const fov = 500;
+      const scale = fov / (fov + z2 + 250);
+      return [w / 2 + x2 * scale * 1.5, h / 2 + y2 * scale * 1.5];
+    }
+
+    function drawRadarPolygon6(points, strokeColor, fillColor, lineWidth, dashed, glowBlur) {
+      if (points.length < 3) return;
+      ctx6.save();
+      if (dashed) ctx6.setLineDash([4, 4]);
+      ctx6.beginPath();
+      ctx6.moveTo(points[0][0], points[0][1]);
+      for (let i = 1; i < points.length; i++) {
+        ctx6.lineTo(points[i][0], points[i][1]);
+      }
+      ctx6.closePath();
+
+      if (fillColor) {
+        ctx6.fillStyle = fillColor;
+        ctx6.fill();
+      }
+
+      ctx6.strokeStyle = strokeColor;
+      ctx6.lineWidth = lineWidth;
+      ctx6.lineJoin = 'round';
+      if (glowBlur > 0) {
+        ctx6.shadowColor = strokeColor;
+        ctx6.shadowBlur = glowBlur;
+      }
+      ctx6.stroke();
+      ctx6.restore();
+    }
+
+    function drawEx6() {
+      if (!canvas6) return;
+      const w = canvas6.width, h = canvas6.height;
+      const cx = w / 2, cy = h / 2;
+
+      ctx6.clearRect(0, 0, w, h);
+      const grad = ctx6.createRadialGradient(cx, cy, 15, cx, cy, 250);
+      grad.addColorStop(0, '#141720');
+      grad.addColorStop(1, '#0b0c10');
+      ctx6.fillStyle = grad;
+      ctx6.fillRect(0, 0, w, h);
+
+      if (dim6 === 2) {
+        /* MODO 2D: Dos vectores (c1 y c2) escalados con paralelogramo neón */
+        const scale = 45 * zoomLevel6;
+
+        ctx6.strokeStyle = '#181c2b';
+        ctx6.lineWidth = 1;
+        for (let i = cx % scale; i < w; i += scale) { ctx6.beginPath(); ctx6.moveTo(i, 0); ctx6.lineTo(i, h); ctx6.stroke(); }
+        for (let j = cy % scale; j < h; j += scale) { ctx6.beginPath(); ctx6.moveTo(0, j); ctx6.lineTo(w, j); ctx6.stroke(); }
+
+        ctx6.strokeStyle = '#475569';
+        ctx6.lineWidth = 2;
+        ctx6.beginPath(); ctx6.moveTo(cx, 0); ctx6.lineTo(cx, h); ctx6.stroke();
+        ctx6.beginPath(); ctx6.moveTo(0, cy); ctx6.lineTo(w, cy); ctx6.stroke();
+
+        const c1 = [2, -1], c2 = [-1, 2];
+        const v1 = [x6 * c1[0] * scale, -x6 * c1[1] * scale];
+        const v2 = [y6 * c2[0] * scale, -y6 * c2[1] * scale];
+        const pSum = [cx + v1[0] + v2[0], cy + v1[1] + v2[1]];
+
+        ctx6.save();
+        ctx6.fillStyle = 'rgba(24, 197, 217, 0.14)';
+        ctx6.beginPath();
+        ctx6.moveTo(cx, cy);
+        ctx6.lineTo(cx + v1[0], cy + v1[1]);
+        ctx6.lineTo(pSum[0], pSum[1]);
+        ctx6.lineTo(cx + v2[0], cy + v2[1]);
+        ctx6.closePath();
+        ctx6.fill();
+        ctx6.restore();
+
+        drawArrowClean2D(ctx6, cx, cy, cx + v1[0], cy + v1[1], '#4f7df3', 3, false);
+        drawArrowClean2D(ctx6, cx + v1[0], cy + v1[1], pSum[0], pSum[1], '#18c5d9', 3, false);
+        drawArrowClean2D(ctx6, cx, cy, cx + v2[0], cy + v2[1], '#18c5d9', 3, true);
+
+        ctx6.save();
+        ctx6.fillStyle = '#f06565';
+        ctx6.shadowColor = '#f06565';
+        ctx6.shadowBlur = 14;
+        ctx6.beginPath(); ctx6.arc(pSum[0], pSum[1], 7, 0, Math.PI * 2); ctx6.fill();
+        ctx6.restore();
+
+      } else {
+        /* MODO N-DIMENSIONAL (3D a 9D): Ejes numerados y polígonos con sombreado neón */
+        const R = 165 * zoomLevel6;
+
+        const baseC1 = [1.4, 2.2, 0.6, 0.5, 0.4, 1.8, 2.3, 0.8, 1.5];
+        const baseC2 = [0.7, 0.4, 1.8, 1.6, 1.9, 1.1, 0.9, 0.5, 1.7];
+        const targetB = [1.2, 2.8, 0.9, 0.7, 1.3, 2.1, 2.4, 0.9, 1.8];
+
+        const ptsC1 = [], ptsC2 = [], ptsSum = [], ptsB = [];
+
+        for (let i = 0; i < dim6; i++) {
+          const angle = (i / dim6) * Math.PI * 2 - Math.PI / 2;
+          const cosA = Math.cos(angle);
+          const sinA = Math.sin(angle);
+
+          const [tipX, tipY] = projectPoint6(cosA * R, sinA * R, 0, w, h);
+          const [lblX, lblY] = projectPoint6(cosA * (R + 22), sinA * (R + 22), 0, w, h);
+
+          ctx6.strokeStyle = '#2d323e';
+          ctx6.lineWidth = 1.2;
+          ctx6.beginPath();
+          ctx6.moveTo(cx, cy);
+          ctx6.lineTo(tipX, tipY);
+          ctx6.stroke();
+
+          ctx6.fillStyle = '#646b7a';
+          ctx6.beginPath();
+          ctx6.arc(tipX, tipY, 3, 0, Math.PI * 2);
+          ctx6.fill();
+
+          ctx6.fillStyle = '#94a3b8';
+          ctx6.font = '12px monospace';
+          ctx6.textAlign = 'center';
+          ctx6.textBaseline = 'middle';
+          ctx6.fillText((i + 1).toString(), lblX, lblY);
+
+          const val1 = Math.abs(x6 * baseC1[i]);
+          const val2 = Math.abs(y6 * baseC2[i]);
+          const valSum = Math.abs(x6 * baseC1[i] + y6 * baseC2[i]);
+          const valB = targetB[i];
+
+          const toRad = (v) => Math.min(R * 1.05, (v / 6.5) * R);
+          const r1 = toRad(val1), r2 = toRad(val2), rS = toRad(valSum), rB = toRad(valB);
+          const zOff = (i % 2 === 0 ? 6 : -6);
+
+          ptsC1.push(projectPoint6(cosA * r1, sinA * r1, zOff, w, h));
+          ptsC2.push(projectPoint6(cosA * r2, sinA * r2, -zOff, w, h));
+          ptsSum.push(projectPoint6(cosA * rS, sinA * rS, zOff * 1.2, w, h));
+          ptsB.push(projectPoint6(cosA * rB, sinA * rB, 0, w, h));
+        }
+
+        drawRadarPolygon6(ptsB, 'rgba(255, 255, 255, 0.45)', null, 1.3, true, 0);
+        drawRadarPolygon6(ptsC1, '#4f7df3', 'rgba(79, 125, 243, 0.14)', 1.8, false, 12);
+        drawRadarPolygon6(ptsC2, '#18c5d9', 'rgba(24, 197, 217, 0.14)', 1.8, false, 12);
+        drawRadarPolygon6(ptsSum, '#f06565', 'rgba(240, 101, 101, 0.18)', 2.6, false, 15);
+
+        ctx6.save();
+        ctx6.fillStyle = '#ffffff';
+        ctx6.shadowColor = '#ffffff';
+        ctx6.shadowBlur = 8;
+        ctx6.beginPath();
+        ctx6.arc(cx, cy, 3.5, 0, Math.PI * 2);
+        ctx6.fill();
+        ctx6.restore();
+      }
+    }
+    /* =========================================================================
+       EJERCICIO 7: ALCANCE EN 3D (JUEGO DE ADIVINANZA)
+       ========================================================================= */
+    const canvas7 = document.getElementById('canvas7');
+    const ctx7 = canvas7.getContext('2d');
+
+    let c1_ex7 = [1.5, 0.5, 0.2];
+    let c2_ex7 = [-0.4, 1.6, 0.8];
+    let b_ex7 = [1.1, 2.1, 1.0];
+    let planePoint7 = [1.1, 2.1, 1.0];
+    let s1_ex7 = 1, s2_ex7 = 1;
+    let isReachable7 = true;
+    let userChoice7 = null;
+    let isRevealed7 = false;
+
+    let rotX7 = 0.45, rotY7 = 0.65, zoomLevel7 = 75;
+    let isDragging7 = false, lastMouseX7 = 0, lastMouseY7 = 0;
+
+    function cross3D(a, b) {
+      return [
+        a[1] * b[2] - a[2] * b[1],
+        a[2] * b[0] - a[0] * b[2],
+        a[0] * b[1] - a[1] * b[0]
+      ];
+    }
+
+    function newRound7() {
+      let normal, normLen = 0;
+      while (normLen < 1.2) {
+        c1_ex7 = [
+          (Math.random() * 2.6 - 1.3),
+          (Math.random() * 2.6 - 1.3),
+          (Math.random() * 2.6 - 1.3)
+        ];
+        c2_ex7 = [
+          (Math.random() * 2.6 - 1.3),
+          (Math.random() * 2.6 - 1.3),
+          (Math.random() * 2.6 - 1.3)
+        ];
+        const l1 = Math.hypot(...c1_ex7);
+        const l2 = Math.hypot(...c2_ex7);
+        if (l1 < 0.7 || l2 < 0.7) continue;
+        normal = cross3D(c1_ex7, c2_ex7);
+        normLen = Math.hypot(...normal);
+      }
+
+      const unitN = normal.map(v => v / normLen);
+      isReachable7 = Math.random() < 0.5;
+
+      s1_ex7 = (Math.random() < 0.5 ? -1 : 1) * (0.6 + Math.random() * 0.8);
+      s2_ex7 = (Math.random() < 0.5 ? -1 : 1) * (0.6 + Math.random() * 0.8);
+
+      planePoint7 = [
+        s1_ex7 * c1_ex7[0] + s2_ex7 * c2_ex7[0],
+        s1_ex7 * c1_ex7[1] + s2_ex7 * c2_ex7[1],
+        s1_ex7 * c1_ex7[2] + s2_ex7 * c2_ex7[2]
+      ];
+
+      if (isReachable7) {
+        b_ex7 = [...planePoint7];
+      } else {
+        const outOffset = (Math.random() < 0.5 ? -1 : 1) * (1.1 + Math.random() * 0.7);
+        b_ex7 = [
+          planePoint7[0] + outOffset * unitN[0],
+          planePoint7[1] + outOffset * unitN[1],
+          planePoint7[2] + outOffset * unitN[2]
+        ];
+      }
+
+      userChoice7 = null;
+      isRevealed7 = false;
+
+      const btnYes = document.getElementById('btn7-yes');
+      const btnNo = document.getElementById('btn7-no');
+      const btnRev = document.getElementById('btn7-reveal');
+      const status7 = document.getElementById('status-box-7');
+      const card7 = document.getElementById('card-canvas-7');
+
+      btnYes.style.borderColor = '#262b3b';
+      btnYes.style.background = '#171a24';
+      btnNo.style.borderColor = '#262b3b';
+      btnNo.style.background = '#171a24';
+
+      btnRev.disabled = true;
+      btnRev.style.opacity = '0.45';
+      btnRev.style.cursor = 'not-allowed';
+
+      status7.style.display = 'none';
+      card7.style.borderColor = 'var(--border-color)';
+
+      drawEx7();
+    }
+
+    function selectAnswer7(choice) {
+      if (isRevealed7) return;
+      userChoice7 = choice;
+
+      const btnYes = document.getElementById('btn7-yes');
+      const btnNo = document.getElementById('btn7-no');
+      const btnRev = document.getElementById('btn7-reveal');
+
+      btnYes.style.borderColor = choice === true ? 'var(--accent-cyan)' : '#262b3b';
+      btnYes.style.background = choice === true ? 'rgba(24, 197, 217, 0.14)' : '#171a24';
+
+      btnNo.style.borderColor = choice === false ? 'var(--accent-cyan)' : '#262b3b';
+      btnNo.style.background = choice === false ? 'rgba(24, 197, 217, 0.14)' : '#171a24';
+
+      btnRev.disabled = false;
+      btnRev.style.opacity = '1';
+      btnRev.style.cursor = 'pointer';
+    }
+
+    function revealAnswer7() {
+      if (userChoice7 === null || isRevealed7) return;
+      isRevealed7 = true;
+
+      const isCorrect = (userChoice7 === isReachable7);
+      const status7 = document.getElementById('status-box-7');
+      const card7 = document.getElementById('card-canvas-7');
+
+      status7.style.display = 'flex';
+      if (isCorrect) {
+        status7.style.borderColor = 'rgba(16, 185, 129, 0.4)';
+        status7.style.color = '#10b981';
+        status7.style.background = 'rgba(16, 185, 129, 0.08)';
+        card7.style.borderColor = 'rgba(16, 185, 129, 0.5)';
+        status7.innerHTML = isReachable7
+          ? `✓ &nbsp;¡Correcto! b sí está dentro del plano generado por c₁ y c₂.`
+          : `✓ &nbsp;¡Correcto! b sobresale fuera del plano (no es combinación de c₁ y c₂).`;
+      } else {
+        status7.style.borderColor = 'rgba(240, 101, 101, 0.35)';
+        status7.style.color = '#f06565';
+        status7.style.background = 'rgba(240, 101, 101, 0.08)';
+        card7.style.borderColor = 'rgba(240, 101, 101, 0.45)';
+        status7.innerHTML = isReachable7
+          ? `✕ &nbsp;Era accesible: b sí descansa exactamente sobre el plano.`
+          : `✕ &nbsp;Fuera de espacio: b apunta fuera del plano (rótalos de perfil para verlo).`;
+      }
+
+      drawEx7();
+    }
+
+    if (canvas7) {
+      canvas7.addEventListener('mousedown', (e) => {
+        isDragging7 = true;
+        lastMouseX7 = e.clientX;
+        lastMouseY7 = e.clientY;
+      });
+      window.addEventListener('mousemove', (e) => {
+        if (!isDragging7) return;
+        rotY7 += (e.clientX - lastMouseX7) * 0.015;
+        rotX7 -= (e.clientY - lastMouseY7) * 0.015;
+        lastMouseX7 = e.clientX;
+        lastMouseY7 = e.clientY;
+        drawEx7();
+      });
+      window.addEventListener('mouseup', () => { isDragging7 = false; });
+      canvas7.addEventListener('wheel', (e) => {
+        e.preventDefault();
+        zoomLevel7 = Math.max(35, Math.min(140, zoomLevel7 - e.deltaY * 0.05));
+        drawEx7();
+      }, { passive: false });
+    }
+
+    function drawEx7() {
+      if (!canvas7) return;
+      const w = canvas7.width, h = canvas7.height;
+      ctx7.clearRect(0, 0, w, h);
+
+      const grad = ctx7.createRadialGradient(w / 2, h / 2, 15, w / 2, h / 2, 250);
+      grad.addColorStop(0, '#14161f');
+      grad.addColorStop(1, '#0b0c10');
+      ctx7.fillStyle = grad;
+      ctx7.fillRect(0, 0, w, h);
+
+      const span = 2.6;
+      const corners = [
+        [-span, -span],
+        [span, -span],
+        [span, span],
+        [-span, span]
+      ].map(([u, v]) => project3DGen(
+        u * c1_ex7[0] + v * c2_ex7[0],
+        u * c1_ex7[1] + v * c2_ex7[1],
+        u * c1_ex7[2] + v * c2_ex7[2],
+        w, h, rotX7, rotY7, zoomLevel7
+      ));
+
+      ctx7.save();
+      ctx7.fillStyle = 'rgba(168, 85, 247, 0.14)';
+      ctx7.strokeStyle = 'rgba(168, 85, 247, 0.25)';
+      ctx7.lineWidth = 1;
+      ctx7.beginPath();
+      ctx7.moveTo(corners[0][0], corners[0][1]);
+      for (let i = 1; i < 4; i++) ctx7.lineTo(corners[i][0], corners[i][1]);
+      ctx7.closePath();
+      ctx7.fill();
+      ctx7.stroke();
+      ctx7.restore();
+
+      const origin = project3DGen(0, 0, 0, w, h, rotX7, rotY7, zoomLevel7);
+      const pC1 = project3DGen(c1_ex7[0], c1_ex7[1], c1_ex7[2], w, h, rotX7, rotY7, zoomLevel7);
+      const pC2 = project3DGen(c2_ex7[0], c2_ex7[1], c2_ex7[2], w, h, rotX7, rotY7, zoomLevel7);
+      const pB = project3DGen(b_ex7[0], b_ex7[1], b_ex7[2], w, h, rotX7, rotY7, zoomLevel7);
+
+      if (isRevealed7) {
+        const pPlane = project3DGen(planePoint7[0], planePoint7[1], planePoint7[2], w, h, rotX7, rotY7, zoomLevel7);
+        if (!isReachable7) {
+          ctx7.save();
+          ctx7.setLineDash([4, 4]);
+          ctx7.strokeStyle = '#f06565';
+          ctx7.lineWidth = 2;
+          ctx7.beginPath();
+          ctx7.moveTo(pPlane[0], pPlane[1]);
+          ctx7.lineTo(pB[0], pB[1]);
+          ctx7.stroke();
+          ctx7.restore();
+        } else {
+          const pS1 = project3DGen(s1_ex7 * c1_ex7[0], s1_ex7 * c1_ex7[1], s1_ex7 * c1_ex7[2], w, h, rotX7, rotY7, zoomLevel7);
+          drawArrow3DFull(ctx7, origin[0], origin[1], pS1[0], pS1[1], 'rgba(79, 125, 243, 0.6)', 1.8, true);
+          drawArrow3DFull(ctx7, pS1[0], pS1[1], pB[0], pB[1], 'rgba(24, 197, 217, 0.6)', 1.8, true);
+        }
+      }
+
+      drawArrow3DFull(ctx7, origin[0], origin[1], pC1[0], pC1[1], '#4f7df3', 3, false);
+      ctx7.fillStyle = '#4f7df3'; ctx7.font = 'bold 12px monospace';
+      ctx7.fillText('c₁', pC1[0] + 7, pC1[1] - 6);
+
+      drawArrow3DFull(ctx7, origin[0], origin[1], pC2[0], pC2[1], '#18c5d9', 3, false);
+      ctx7.fillStyle = '#18c5d9'; ctx7.font = 'bold 12px monospace';
+      ctx7.fillText('c₂', pC2[0] + 7, pC2[1] - 6);
+
+      const bColor = isRevealed7 ? (isReachable7 ? '#10b981' : '#f06565') : '#ffffff';
+      drawArrow3DFull(ctx7, origin[0], origin[1], pB[0], pB[1], bColor, 3, false);
+      ctx7.fillStyle = bColor; ctx7.font = 'bold 12px monospace';
+      ctx7.fillText('b', pB[0] + 7, pB[1] - 6);
+    }
+    /* =========================================================================
+       EJERCICIO 8: MATRIX PLAYGROUND (ÁLGEBRA LINEAL EN TIEMPO REAL)
+       ========================================================================= */
+    let dim8 = 2;
+    let matA8 = [
+      [-0.6, -2.3],
+      [-0.6,  0.7]
+    ];
+    let vecB8 = [-2.9, 1.5];
+
+    const colColors8 = [
+      '#4f7df3', '#18c5d9', '#a855f7', '#10b981',
+      '#f59e0b', '#ec4899', '#3b82f6', '#14b8a6', '#8b5cf6'
+    ];
+
+    function renderSizeButtons8() {
+      const container = document.getElementById('size-buttons-8');
+      if (!container) return;
+      container.innerHTML = '';
+      for (let n = 2; n <= 9; n++) {
+        const btn = document.createElement('button');
+        btn.textContent = n;
+        const isActive = (n === dim8);
+        btn.style.cssText = `
+          width: 30px; height: 30px; border-radius: 6px; font-family: monospace;
+          font-size: 0.78rem; font-weight: 700; cursor: pointer; transition: 0.15s;
+          background: ${isActive ? '#1f2536' : '#11131a'};
+          color: ${isActive ? '#f8fafc' : '#8b94a5'};
+          border: 1px solid ${isActive ? '#4f7df3' : '#222736'};
+        `;
+        btn.onclick = () => setMatrixSize8(n);
+        container.appendChild(btn);
+      }
+    }
+
+    function setMatrixSize8(n) {
+      const newA = [];
+      const newB = [];
+      for (let r = 0; r < n; r++) {
+        const row = [];
+        for (let c = 0; c < n; c++) {
+          if (matA8[r] && matA8[r][c] !== undefined) {
+            row.push(matA8[r][c]);
+          } else {
+            row.push(r === c ? 1 : 0);
+          }
+        }
+        newA.push(row);
+        newB.push(vecB8[r] !== undefined ? vecB8[r] : 1);
+      }
+      dim8 = n;
+      matA8 = newA;
+      vecB8 = newB;
+      buildInputs8();
+      recalcEx8();
+    }
+
+    function buildInputs8() {
+      renderSizeButtons8();
+      const sub = document.getElementById('mat8-subtitle');
+      const matGrid = document.getElementById('mat8-grid');
+      const vecGrid = document.getElementById('vec8-grid');
+      if (!matGrid || !vecGrid) return;
+
+      sub.textContent = `MATRIZ A · ${dim8}×${dim8} (columnas c1... c${dim8})`;
+      matGrid.style.gridTemplateColumns = `repeat(${dim8}, minmax(48px, 1fr))`;
+      matGrid.innerHTML = '';
+
+      for (let r = 0; r < dim8; r++) {
+        for (let c = 0; c < dim8; c++) {
+          const inp = document.createElement('input');
+          inp.type = 'number';
+          inp.step = '0.1';
+          inp.value = matA8[r][c];
+          inp.className = 'editable-input';
+          inp.style.width = dim8 > 6 ? '46px' : '54px';
+          inp.style.fontSize = dim8 > 6 ? '0.78rem' : '0.88rem';
+          inp.style.color = colColors8[c % colColors8.length];
+          inp.addEventListener('input', (e) => {
+            matA8[r][c] = parseFloat(e.target.value) || 0;
+            recalcEx8();
+          });
+          matGrid.appendChild(inp);
+        }
+      }
+
+      vecGrid.style.gridTemplateColumns = '1fr';
+      vecGrid.innerHTML = '';
+      for (let r = 0; r < dim8; r++) {
+        const inp = document.createElement('input');
+        inp.type = 'number';
+        inp.step = '0.1';
+        inp.value = vecB8[r];
+        inp.className = 'editable-input';
+        inp.style.width = dim8 > 6 ? '46px' : '54px';
+        inp.style.fontSize = dim8 > 6 ? '0.78rem' : '0.88rem';
+        inp.style.color = '#f8fafc';
+        inp.addEventListener('input', (e) => {
+          vecB8[r] = parseFloat(e.target.value) || 0;
+          recalcEx8();
+        });
+        vecGrid.appendChild(inp);
+      }
+    }
+
+    function computeDeterminant8(M) {
+      const n = M.length;
+      const A = M.map(row => [...row]);
+      let det = 1;
+      for (let i = 0; i < n; i++) {
+        let pivot = i;
+        for (let r = i + 1; r < n; r++) {
+          if (Math.abs(A[r][i]) > Math.abs(A[pivot][i])) pivot = r;
+        }
+        if (Math.abs(A[pivot][i]) < 1e-8) return 0;
+        if (pivot !== i) {
+          [A[i], A[pivot]] = [A[pivot], A[i]];
+          det *= -1;
+        }
+        det *= A[i][i];
+        for (let r = i + 1; r < n; r++) {
+          const factor = A[r][i] / A[i][i];
+          for (let c = i; c < n; c++) {
+            A[r][c] -= factor * A[i][c];
+          }
+        }
+      }
+      return det;
+    }
+
+    function computeRank8(M, colsToCheck) {
+      const rows = M.length;
+      const cols = colsToCheck;
+      const A = M.map(row => [...row]);
+      let rank = 0;
+      for (let c = 0; c < cols && rank < rows; c++) {
+        let pivot = rank;
+        for (let r = rank + 1; r < rows; r++) {
+          if (Math.abs(A[r][c]) > Math.abs(A[pivot][c])) pivot = r;
+        }
+        if (Math.abs(A[pivot][c]) < 1e-7) continue;
+        [A[rank], A[pivot]] = [A[pivot], A[rank]];
+        const div = A[rank][c];
+        for (let j = c; j < A[0].length; j++) A[rank][j] /= div;
+        for (let r = 0; r < rows; r++) {
+          if (r !== rank && Math.abs(A[r][c]) > 1e-7) {
+            const factor = A[r][c];
+            for (let j = c; j < A[0].length; j++) {
+              A[r][j] -= factor * A[rank][j];
+            }
+          }
+        }
+        rank++;
+      }
+      return rank;
+    }
+
+    function recalcEx8() {
+      const n = dim8;
+      const det = computeDeterminant8(matA8);
+      const rankA = computeRank8(matA8, n);
+      const aug = matA8.map((row, r) => [...row, vecB8[r]]);
+      const rankAug = computeRank8(aug, n + 1);
+
+      const isFullRank = (rankA === n);
+      const hasSolution = (rankA === rankAug);
+
+      // Ax con x = [1, 1, ..., 1]
+      const axOnes = matA8.map(row => {
+        const sum = row.reduce((acc, v) => acc + v, 0);
+        return Number.isInteger(sum) ? sum.toString() : sum.toFixed(1);
+      });
+
+      const elRank = document.getElementById('stat8-rank');
+      const elIndep = document.getElementById('stat8-indep');
+      const elDet = document.getElementById('stat8-det');
+      const elAx = document.getElementById('stat8-ax');
+      const elSol = document.getElementById('stat8-sol');
+      const elSpan = document.getElementById('stat8-span');
+
+      elRank.textContent = `${rankA} / ${n}`;
+      elRank.style.color = isFullRank ? 'var(--accent-green)' : '#f59e0b';
+
+      elIndep.textContent = isFullRank ? 'Sí' : 'No';
+      elIndep.style.color = isFullRank ? 'var(--accent-cyan)' : 'var(--accent-coral)';
+
+      const cleanDet = Math.abs(det) < 1e-7 ? 0 : det;
+      elDet.textContent = Number.isInteger(cleanDet) ? cleanDet.toString() : cleanDet.toFixed(1);
+      elDet.style.color = cleanDet === 0 ? 'var(--accent-coral)' : 'var(--accent-blue)';
+
+      elAx.textContent = `[${axOnes.join(', ')}]`;
+
+      elSol.textContent = hasSolution ? 'Sí' : 'No';
+      elSol.style.color = hasSolution ? 'var(--accent-green)' : 'var(--accent-coral)';
+
+      if (isFullRank) {
+        elSpan.textContent = 'Todo el espacio';
+      } else if (rankA === 0) {
+        elSpan.textContent = 'Solo el origen (dim 0)';
+      } else if (rankA === 1) {
+        elSpan.textContent = 'Una línea (dim 1)';
+      } else if (rankA === 2) {
+        elSpan.textContent = 'Un plano (dim 2)';
+      } else {
+        elSpan.textContent = `Subespacio de dim ${rankA}`;
+      }
+    }
+
+    function randomMatrix8() {
+      const makeSingular = Math.random() < 0.35;
+      for (let r = 0; r < dim8; r++) {
+        for (let c = 0; c < dim8; c++) {
+          matA8[r][c] = parseFloat((Math.random() * 6 - 3).toFixed(1));
+        }
+        vecB8[r] = parseFloat((Math.random() * 6 - 3).toFixed(1));
+      }
+      if (makeSingular && dim8 >= 2) {
+        const mult = parseFloat((Math.random() * 2 + 0.5).toFixed(1));
+        for (let r = 0; r < dim8; r++) {
+          matA8[r][dim8 - 1] = parseFloat((matA8[r][0] * mult).toFixed(1));
+        }
+      }
+      buildInputs8();
+      recalcEx8();
+    }
+
+    function resetMatrix8() {
+      dim8 = 2;
+      matA8 = [
+        [-0.6, -2.3],
+        [-0.6,  0.7]
+      ];
+      vecB8 = [-2.9, 1.5];
+      buildInputs8();
+      recalcEx8();
+    }
+
+    function exportJSON8() {
+      const data = JSON.stringify({ size: dim8, A: matA8, b: vecB8 }, null, 2);
+      const blob = new Blob([data], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `matriz-${dim8}x${dim8}.json`;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+
+    function importJSON8(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        try {
+          const parsed = JSON.parse(e.target.result);
+          if (Array.isArray(parsed.A) && parsed.A.length >= 2 && parsed.A.length <= 9) {
+            dim8 = parsed.A.length;
+            matA8 = parsed.A.map(row => row.slice(0, dim8).map(v => Number(v) || 0));
+            vecB8 = Array.isArray(parsed.b)
+              ? parsed.b.slice(0, dim8).map(v => Number(v) || 0)
+              : Array(dim8).fill(1);
+            buildInputs8();
+            recalcEx8();
+          }
+        } catch (err) {
+          alert('El archivo JSON no tiene un formato válido.');
+        }
+      };
+      reader.readAsText(file);
+      event.target.value = '';
+    }
+
+    function initEx8() {
+      buildInputs8();
+      recalcEx8();
+    }
+    /* =========================================================================
+       EJERCICIO 9: CONSTRUCTOR DE COMBINACIONES LINEALES (PASO A PASO)
+       ========================================================================= */
+    const canvas9 = document.getElementById('canvas9');
+    const ctx9 = canvas9 ? canvas9.getContext('2d') : null;
+
+    const colsData9 = {
+      c1: { vec: [2, -1], color: '#4f7df3', label: 'c₁', sliderClass: 'slider-blue' },
+      c2: { vec: [-1, 2], color: '#18c5d9', label: 'c₂', sliderClass: 'slider-cyan' },
+      c3: { vec: [1, 1],  color: '#a855f7', label: 'c₃', sliderClass: 'slider-purple' }
+    };
+    const targetB9 = [0, 3];
+
+    let selectedCol9 = 'c1';
+    let scale9 = 1.0;
+    let steps9 = [];
+    let redoStack9 = [];
+    let isReplaying9 = false;
+    let replayProgress9 = 0;
+
+    const sliderScale9 = document.getElementById('slider-scale9');
+    const valScale9 = document.getElementById('val-scale9');
+
+    if (sliderScale9) {
+      sliderScale9.addEventListener('input', (e) => {
+        scale9 = parseFloat(e.target.value);
+        valScale9.textContent = scale9.toFixed(1).replace('.', ',');
+        if (!isReplaying9) drawEx9();
+      });
+    }
+
+    function selectCol9(colKey) {
+      selectedCol9 = colKey;
+      ['c1', 'c2', 'c3'].forEach((k) => {
+        const btn = document.getElementById('btn9-' + k);
+        if (!btn) return;
+        const active = (k === colKey);
+        const col = colsData9[k].color;
+        btn.style.borderColor = active ? col : '#262b3b';
+        btn.style.color = active ? col : 'var(--text-main)';
+        btn.style.background = active ? 'rgba(255, 255, 255, 0.05)' : '#171a24';
+      });
+      if (sliderScale9) {
+        sliderScale9.className = colsData9[colKey].sliderClass;
+      }
+      if (!isReplaying9) drawEx9();
+    }
+
+    function addStep9() {
+      if (isReplaying9) return;
+      steps9.push({ col: selectedCol9, scalar: scale9 });
+      redoStack9 = [];
+      updateUI9();
+      drawEx9();
+    }
+
+    function undoStep9() {
+      if (steps9.length === 0 || isReplaying9) return;
+      redoStack9.push(steps9.pop());
+      updateUI9();
+      drawEx9();
+    }
+
+    function redoStep9() {
+      if (redoStack9.length === 0 || isReplaying9) return;
+      steps9.push(redoStack9.pop());
+      updateUI9();
+      drawEx9();
+    }
+
+    function clearSteps9() {
+      isReplaying9 = false;
+      steps9 = [];
+      redoStack9 = [];
+      updateUI9();
+      drawEx9();
+    }
+
+    function replaySteps9() {
+      if (steps9.length === 0 || isReplaying9) return;
+      isReplaying9 = true;
+      replayProgress9 = 0;
+      updateUI9();
+
+      let lastTime = performance.now();
+      function animateReplay(now) {
+        if (!isReplaying9) return;
+        const dt = (now - lastTime) / 1000;
+        lastTime = now;
+        replayProgress9 += dt * 1.4; // Velocidad de cada paso
+
+        if (replayProgress9 >= steps9.length) {
+          replayProgress9 = steps9.length;
+          isReplaying9 = false;
+          updateUI9();
+          drawEx9();
+          return;
+        }
+        drawEx9();
+        requestAnimationFrame(animateReplay);
+      }
+      requestAnimationFrame(animateReplay);
+    }
+
+    function screenshotCanvas9() {
+      if (!canvas9) return;
+      const link = document.createElement('a');
+      link.download = 'combinacion-lineal.png';
+      link.href = canvas9.toDataURL('image/png');
+      link.click();
+    }
+
+    function setBtnState9(id, enabled) {
+      const btn = document.getElementById(id);
+      if (!btn) return;
+      btn.disabled = !enabled;
+      btn.style.opacity = enabled ? '1' : '0.45';
+      btn.style.cursor = enabled ? 'pointer' : 'not-allowed';
+    }
+
+    function updateUI9() {
+      setBtnState9('btn9-add', !isReplaying9);
+      setBtnState9('btn9-undo', steps9.length > 0 && !isReplaying9);
+      setBtnState9('btn9-redo', redoStack9.length > 0 && !isReplaying9);
+      setBtnState9('btn9-replay', steps9.length > 0 && !isReplaying9);
+      setBtnState9('btn9-clear', (steps9.length > 0 || redoStack9.length > 0) && !isReplaying9);
+
+      const logBox = document.getElementById('chain-log-9');
+      const card9 = document.getElementById('card-canvas-9');
+      if (!logBox) return;
+
+      if (steps9.length === 0) {
+        logBox.innerHTML = 'Añade tu primer paso para iniciar la cadena.';
+        if (card9) card9.style.borderColor = 'var(--border-color)';
+        return;
+      }
+
+      let sumX = 0, sumY = 0;
+      const itemsHTML = steps9.map((st, idx) => {
+        const info = colsData9[st.col];
+        sumX += st.scalar * info.vec[0];
+        sumY += st.scalar * info.vec[1];
+        const sign = st.scalar >= 0 && idx > 0 ? '+' : '';
+        return `<span style="color:${info.color}; font-weight:700;">${sign}${st.scalar.toFixed(1).replace('.', ',')}·${info.label}</span>`;
+      });
+
+      const dist = Math.hypot(sumX - targetB9[0], sumY - targetB9[1]);
+      const isSolved = dist < 0.08;
+
+      if (card9) {
+        card9.style.borderColor = isSolved ? 'rgba(16, 185, 129, 0.5)' : 'var(--border-color)';
+      }
+
+      const statusLine = isSolved
+        ? `<div style="margin-top:6px; color:#10b981; font-weight:700;">✓ ¡Objetivo b alcanzado! (${formatNum(sumX)}, ${formatNum(sumY)})</div>`
+        : `<div style="margin-top:6px; color:#8b94a5;">Posición actual: (${formatNum(sumX)}, ${formatNum(sumY)}) • Distancia a b: ${formatNum(dist)}</div>`;
+
+      logBox.innerHTML = `<div>${itemsHTML.join(' ')}</div>${statusLine}`;
+    }
+
+    function drawEx9() {
+      if (!canvas9 || !ctx9) return;
+      const scale = 44;
+      const { cx, cy } = drawGridAndAxes(ctx9, scale);
+      const toScr = (vx, vy) => [cx + vx * scale, cy - vy * scale];
+
+      // 1. Objetivo b (línea blanca punteada desde el origen)
+      const [bx, by] = toScr(targetB9[0], targetB9[1]);
+      drawArrowClean2D(ctx9, cx, cy, bx, by, '#ffffff', 2.2, true);
+      ctx9.fillStyle = '#ffffff';
+      ctx9.font = 'bold 12px monospace';
+      ctx9.fillText('b', bx + 8, by - 4);
+
+      // 2. Dibujar cadena de pasos acumulados
+      let curX = 0, curY = 0;
+      const limit = isReplaying9 ? replayProgress9 : steps9.length;
+
+      for (let i = 0; i < steps9.length; i++) {
+        if (i >= limit) break;
+        const frac = Math.min(1, limit - i);
+        const st = steps9[i];
+        const info = colsData9[st.col];
+
+        const nextX = curX + st.scalar * info.vec[0] * frac;
+        const nextY = curY + st.scalar * info.vec[1] * frac;
+
+        const [sx, sy] = toScr(curX, curY);
+        const [ex, ey] = toScr(nextX, nextY);
+
+        drawArrowClean2D(ctx9, sx, sy, ex, ey, info.color, 3, false);
+
+        // Nodo intermedio
+        ctx9.fillStyle = info.color;
+        ctx9.beginPath();
+        ctx9.arc(ex, ey, 4, 0, Math.PI * 2);
+        ctx9.fill();
+
+        curX = nextX;
+        curY = nextY;
+      }
+
+      const [tipX, tipY] = toScr(curX, curY);
+
+      // 3. Vista previa punteada del paso actual seleccionado (cuando no está en reproducción)
+      if (!isReplaying9 && Math.abs(scale9) > 0.01) {
+        const prevInfo = colsData9[selectedCol9];
+        const prevX = curX + scale9 * prevInfo.vec[0];
+        const prevY = curY + scale9 * prevInfo.vec[1];
+        const [px, py] = toScr(prevX, prevY);
+
+        ctx9.save();
+        ctx9.globalAlpha = 0.45;
+        drawArrowClean2D(ctx9, tipX, tipY, px, py, prevInfo.color, 2, true);
+        ctx9.restore();
+      }
+
+      // 4. Punto brillante en la punta de la cadena
+      if (steps9.length > 0) {
+        const dist = Math.hypot(curX - targetB9[0], curY - targetB9[1]);
+        const isSolved = dist < 0.08 && !isReplaying9;
+        const dotColor = isSolved ? '#10b981' : '#f06565';
+
+        ctx9.save();
+        ctx9.shadowColor = dotColor;
+        ctx9.shadowBlur = 14;
+        ctx9.fillStyle = dotColor;
+        ctx9.beginPath();
+        ctx9.arc(tipX, tipY, 7.5, 0, Math.PI * 2);
+        ctx9.fill();
+        ctx9.strokeStyle = '#ffffff';
+        ctx9.lineWidth = 2;
+        ctx9.stroke();
+        ctx9.restore();
+      }
+    }
+
+    function initEx9() {
+      selectCol9('c1');
+      updateUI9();
+      drawEx9();
+    }
+    /* =========================================================================
+       EJERCICIO 10: MODO DE APRENDIZAJE (APRENDE · QUIZ · DESAFÍO)
+       ========================================================================= */
+    let mode10 = 'learn';
+
+    function switchMode10(newMode) {
+      mode10 = newMode;
+      const modes = ['learn', 'quiz', 'challenge'];
+      modes.forEach((m) => {
+        const panel = document.getElementById('panel10-' + m);
+        const tab = document.getElementById('tab10-' + m);
+        if (!panel || !tab) return;
+        const active = (m === newMode);
+        panel.style.display = active ? (m === 'quiz' ? 'block' : 'grid') : 'none';
+        tab.style.borderColor = active ? '#64748b' : '#262b3b';
+        tab.style.background = active ? '#1e2230' : '#171a24';
+        tab.style.color = active ? '#f8fafc' : 'var(--text-main)';
+      });
+
+      if (newMode === 'learn') drawLearn10();
+      if (newMode === 'quiz') renderQuiz10();
+      if (newMode === 'challenge') drawChallenge10();
+    }
+
+    /* --- SUBMÓDULO 10A: APRENDE (6 PASOS) --- */
+    const canvas10a = document.getElementById('canvas10a');
+    const ctx10a = canvas10a ? canvas10a.getContext('2d') : null;
+    let learnStep10 = 0;
+
+    const learnStepsData10 = [
+      {
+        title: "Esta es la Columna 1.",
+        desc: "c₁ = (2, −1). Cada columna de una matriz es solo una dirección y una distancia — un lugar al que puedes llegar caminando desde el origen."
+      },
+      {
+        title: "Esta es la Columna 2.",
+        desc: "c₂ = (−1, 2). Nuestra segunda dirección disponible. Combinando pasos a lo largo de c₁ y c₂ podemos navegar por todo el plano."
+      },
+      {
+        title: "Este es nuestro objetivo b.",
+        desc: "b = (0, 3). Queremos encontrar cuánto escalar cada columna (x e y) para aterrizar exactamente sobre esta flecha blanca."
+      },
+      {
+        title: "Paso 1: Avanzamos 1 · c₁.",
+        desc: "Elegimos x = 1. Caminamos una vez en la dirección de la columna azul desde el origen hasta el punto (2, −1)."
+      },
+      {
+        title: "Paso 2: Sumamos 2 · c₂.",
+        desc: "Elegimos y = 2. Desde la punta de c₁, damos dos pasos en la dirección cian: 2 · (−1, 2) = (−2, 4)."
+      },
+      {
+        title: "¡Combinación completa! Ax = b.",
+        desc: "1 · c₁ + 2 · c₂ = (2 − 2, −1 + 4) = (0, 3) = b. Acabas de resolver el sistema desde la Imagen de la Columna."
+      }
+    ];
+
+    function updateLearnUI10() {
+      const data = learnStepsData10[learnStep10];
+      document.getElementById('learn10-step-tag').textContent = `PASO ${learnStep10 + 1} / ${learnStepsData10.length}`;
+      document.getElementById('learn10-title').textContent = data.title;
+      document.getElementById('learn10-desc').textContent = data.desc;
+
+      const btnPrev = document.getElementById('btn10-prev');
+      const btnNext = document.getElementById('btn10-next');
+
+      btnPrev.disabled = (learnStep10 === 0);
+      btnPrev.style.opacity = learnStep10 === 0 ? '0.45' : '1';
+      btnPrev.style.cursor = learnStep10 === 0 ? 'not-allowed' : 'pointer';
+
+      const isLast = (learnStep10 === learnStepsData10.length - 1);
+      btnNext.textContent = isLast ? 'Completado ✓' : 'Siguiente ›';
+      btnNext.disabled = isLast;
+      btnNext.style.opacity = isLast ? '0.6' : '1';
+      btnNext.style.cursor = isLast ? 'default' : 'pointer';
+
+      drawLearn10();
+    }
+
+    function stepLearn10(delta) {
+      learnStep10 = Math.max(0, Math.min(learnStepsData10.length - 1, learnStep10 + delta));
+      updateLearnUI10();
+    }
+
+    function resetLearn10() {
+      learnStep10 = 0;
+      updateLearnUI10();
+    }
+
+    function drawLearn10() {
+      if (!canvas10a || !ctx10a) return;
+      const scale = 44;
+      const { cx, cy } = drawGridAndAxes(ctx10a, scale);
+      const toScr = (vx, vy) => [cx + vx * scale, cy - vy * scale];
+
+      const c1 = [2, -1], c2 = [-1, 2], b = [0, 3];
+      const [pC1x, pC1y] = toScr(c1[0], c1[1]);
+      const [pC2x, pC2y] = toScr(c2[0], c2[1]);
+      const [pBx, pBy] = toScr(b[0], b[1]);
+
+      // Flechas base punteadas
+      drawArrowClean2D(ctx10a, cx, cy, pC1x, pC1y, '#4f7df3', learnStep10 === 0 ? 3.2 : 2, true);
+      drawArrowClean2D(ctx10a, cx, cy, pC2x, pC2y, '#18c5d9', learnStep10 === 1 ? 3.2 : 2, true);
+      drawArrowClean2D(ctx10a, cx, cy, pBx, pBy, '#ffffff', learnStep10 === 2 ? 3.2 : 2, true);
+
+      let dotPos = [cx, cy];
+      let dotColor = '#f06565';
+
+      // Paso 3 (índice 3): 1*c1 sólido
+      if (learnStep10 >= 3) {
+        drawArrowClean2D(ctx10a, cx, cy, pC1x, pC1y, '#4f7df3', 3.2, false);
+        dotPos = [pC1x, pC1y];
+      }
+
+      // Paso 4 y 5 (índices 4 y 5): + 2*c2 sólido desde punta de c1 hasta b
+      if (learnStep10 >= 4) {
+        drawArrowClean2D(ctx10a, pC1x, pC1y, pBx, pBy, '#18c5d9', 3.2, false);
+        dotPos = [pBx, pBy];
+      }
+
+      // Paso 5 (índice 5): sombreado del paralelogramo y punto verde
+      if (learnStep10 === 5) {
+        const [p2C2x, p2C2y] = toScr(2 * c2[0], 2 * c2[1]);
+        ctx10a.save();
+        ctx10a.fillStyle = 'rgba(16, 185, 129, 0.14)';
+        ctx10a.beginPath();
+        ctx10a.moveTo(cx, cy);
+        ctx10a.lineTo(pC1x, pC1y);
+        ctx10a.lineTo(pBx, pBy);
+        ctx10a.lineTo(p2C2x, p2C2y);
+        ctx10a.closePath();
+        ctx10a.fill();
+        ctx10a.restore();
+        dotColor = '#10b981';
+      }
+
+      // Punto brillante actual
+      ctx10a.save();
+      ctx10a.shadowColor = dotColor;
+      ctx10a.shadowBlur = 14;
+      ctx10a.fillStyle = dotColor;
+      ctx10a.beginPath();
+      ctx10a.arc(dotPos[0], dotPos[1], 7.5, 0, Math.PI * 2);
+      ctx10a.fill();
+      ctx10a.strokeStyle = '#ffffff';
+      ctx10a.lineWidth = 2;
+      ctx10a.stroke();
+      ctx10a.restore();
+    }
+
+    /* --- SUBMÓDULO 10B: QUIZ CONCEPTUAL (6 PREGUNTAS) --- */
+    const quizQuestions10 = [
+      {
+        q: "En la Imagen de Columnas, ¿qué calcula realmente Ax?",
+        options: [
+          "Una combinación lineal de las columnas de A",
+          "El determinante de A",
+          "El inverso de A",
+          "Una comparación fila por fila de A y x"
+        ],
+        correct: 0,
+        explain: "Ax toma cada entrada de x como un escalar y suma las columnas de A ponderadas: x₁·c₁ + x₂·c₂ + ..."
+      },
+      {
+        q: "Si dos columnas en 2D apuntan exactamente en la misma dirección, ¿qué objetivos b pueden alcanzar?",
+        options: [
+          "Todo el plano bidimensional completo",
+          "Solo los puntos que están sobre esa misma línea",
+          "Únicamente el punto (1, 1)",
+          "Un plano tridimensional"
+        ],
+        correct: 1,
+        explain: "Cuando las columnas son colineales (dependientes), sus combinaciones quedan atrapadas en una sola recta."
+      },
+      {
+        q: "En la ecuación Ax = b, ¿qué representan las entradas del vector x?",
+        options: [
+          "Las coordenadas del punto objetivo b",
+          "El número de filas de la matriz",
+          "Los escalares o pesos que multiplican a cada columna de A",
+          "La distancia entre las columnas"
+        ],
+        correct: 2,
+        explain: "Cada componente de x indica cuánto estirar, encoger o invertir la columna correspondiente de A."
+      },
+      {
+        q: "Dos columnas linealmente independientes en el espacio 3D abarcan, como máximo...",
+        options: [
+          "Todo el volumen 3D",
+          "Una única línea recta",
+          "Un plano que pasa por el origen",
+          "Solo tres puntos aislados"
+        ],
+        correct: 2,
+        explain: "Dos direcciones independientes en 3D generan un plano bidimensional dentro del espacio tridimensional."
+      },
+      {
+        q: "¿Cuándo tiene solución el sistema Ax = b para cualquier vector b del espacio?",
+        options: [
+          "Cuando las columnas de A son independientes y abarcan todo el espacio",
+          "Cuando todos los números de b son positivos",
+          "Cuando la matriz A contiene al menos un cero",
+          "Siempre, sin importar qué columnas tenga A"
+        ],
+        correct: 0,
+        explain: "Si las columnas son independientes y de rango completo, su alcance cubre todo el espacio y ningún b queda fuera."
+      },
+      {
+        q: "Si en 2D tenemos tres columnas y c₃ = c₁ + c₂, ¿qué ocurre cuando Ax = b tiene solución?",
+        options: [
+          "No existe ninguna solución posible",
+          "Existen infinitas combinaciones x que llegan al mismo b",
+          "La única solución posible es x = 0",
+          "El determinante de A es igual a 1"
+        ],
+        correct: 1,
+        explain: "Al haber una columna redundante (dependiente), puedes llegar al mismo destino b por múltiples caminos distintos."
+      }
+    ];
+
+    let quizIdx10 = 0;
+    let quizSessionHits10 = 0;
+    let quizTotalHits10 = 0;
+    let quizTotalAnswered10 = 0;
+    let quizAnsweredCurrent10 = false;
+
+    function renderQuiz10() {
+      const item = quizQuestions10[quizIdx10];
+      document.getElementById('quiz10-progress').textContent = `Pregunta ${quizIdx10 + 1} / ${quizQuestions10.length}`;
+      document.getElementById('quiz10-score').textContent = `Sesión: ${quizSessionHits10} acertado · Total: ${quizTotalHits10}/${quizTotalAnswered10}`;
+      document.getElementById('quiz10-question').textContent = item.q;
+
+      const optContainer = document.getElementById('quiz10-options');
+      optContainer.innerHTML = '';
+      quizAnsweredCurrent10 = false;
+
+      item.options.forEach((optText, idx) => {
+        const btn = document.createElement('button');
+        btn.textContent = optText;
+        btn.style.cssText = `
+          width: 100%; text-align: left; padding: 13px 16px; border-radius: 9px;
+          background: #141720; border: 1px solid #262b3b; color: #e2e8f0;
+          font-family: monospace; font-size: 0.82rem; cursor: pointer; transition: 0.15s;
+        `;
+        btn.onmouseover = () => { if (!quizAnsweredCurrent10) btn.style.borderColor = '#475569'; };
+        btn.onmouseout = () => { if (!quizAnsweredCurrent10) btn.style.borderColor = '#262b3b'; };
+        btn.onclick = () => selectQuizOption10(idx);
+        optContainer.appendChild(btn);
+      });
+
+      const fb = document.getElementById('quiz10-feedback');
+      fb.style.display = 'none';
+
+      const nextBtn = document.getElementById('btn10-quiz-next');
+      nextBtn.disabled = true;
+      nextBtn.style.opacity = '0.45';
+      nextBtn.style.cursor = 'not-allowed';
+      nextBtn.textContent = (quizIdx10 === quizQuestions10.length - 1) ? 'Reiniciar quiz ↺' : 'Siguiente pregunta ›';
+    }
+
+    function selectQuizOption10(chosenIdx) {
+      if (quizAnsweredCurrent10) return;
+      quizAnsweredCurrent10 = true;
+
+      const item = quizQuestions10[quizIdx10];
+      const isRight = (chosenIdx === item.correct);
+
+      quizTotalAnswered10++;
+      if (isRight) {
+        quizSessionHits10++;
+        quizTotalHits10++;
+      }
+
+      document.getElementById('quiz10-score').textContent = `Sesión: ${quizSessionHits10} acertado · Total: ${quizTotalHits10}/${quizTotalAnswered10}`;
+
+      const buttons = document.getElementById('quiz10-options').children;
+      for (let i = 0; i < buttons.length; i++) {
+        buttons[i].style.cursor = 'default';
+        if (i === item.correct) {
+          buttons[i].style.borderColor = '#10b981';
+          buttons[i].style.background = 'rgba(16, 185, 129, 0.12)';
+          buttons[i].style.color = '#10b981';
+        } else if (i === chosenIdx && !isRight) {
+          buttons[i].style.borderColor = '#f06565';
+          buttons[i].style.background = 'rgba(240, 101, 101, 0.12)';
+          buttons[i].style.color = '#f06565';
+        }
+      }
+
+      const fb = document.getElementById('quiz10-feedback');
+      fb.style.display = 'block';
+      fb.style.border = `1px solid ${isRight ? 'rgba(16, 185, 129, 0.35)' : 'rgba(240, 101, 101, 0.35)'}`;
+      fb.style.background = isRight ? 'rgba(16, 185, 129, 0.08)' : 'rgba(240, 101, 101, 0.08)';
+      fb.style.color = isRight ? '#10b981' : '#f06565';
+      fb.textContent = (isRight ? '✓ ¡Correcto! ' : '✕ Incorrecto. ') + item.explain;
+
+      const nextBtn = document.getElementById('btn10-quiz-next');
+      nextBtn.disabled = false;
+      nextBtn.style.opacity = '1';
+      nextBtn.style.cursor = 'pointer';
+    }
+
+    function nextQuiz10() {
+      if (!quizAnsweredCurrent10) return;
+      if (quizIdx10 < quizQuestions10.length - 1) {
+        quizIdx10++;
+      } else {
+        quizIdx10 = 0;
+        quizSessionHits10 = 0;
+      }
+      renderQuiz10();
+    }
+
+    /* --- SUBMÓDULO 10C: DESAFÍO COMPUTACIONAL --- */
+    const canvas10c = document.getElementById('canvas10c');
+    const ctx10c = canvas10c ? canvas10c.getContext('2d') : null;
+
+    let chC1_10 = [1, 2];
+    let chC2_10 = [3, 2];
+    let chB_10 = [4, 0];
+    let chX10 = 0, chY10 = 0;
+    let streak10 = 0, bestStreak10 = 0;
+    let chSolved10 = false;
+
+    const slider10X = document.getElementById('slider10-x');
+    const slider10Y = document.getElementById('slider10-y');
+
+    if (slider10X && slider10Y) {
+      slider10X.addEventListener('input', (e) => {
+        chX10 = parseFloat(e.target.value);
+        document.getElementById('val10-x').textContent = formatNum(chX10);
+        drawChallenge10();
+      });
+      slider10Y.addEventListener('input', (e) => {
+        chY10 = parseFloat(e.target.value);
+        document.getElementById('val10-y').textContent = formatNum(chY10);
+        drawChallenge10();
+      });
+    }
+
+    function newChallenge10(useInitial) {
+      if (useInitial) {
+        chC1_10 = [1, 2];
+        chC2_10 = [3, 2];
+        chB_10 = [4, 0];
+      } else {
+        const vals = [-2, -1, 1, 2, 3];
+        const pick = () => vals[Math.floor(Math.random() * vals.length)];
+        const mults = [-2, -1, 1, 2];
+        const pickM = () => mults[Math.floor(Math.random() * mults.length)];
+
+        let valid = false;
+        while (!valid) {
+          const c1 = [pick(), pick()];
+          const c2 = [pick(), pick()];
+          const det = c1[0] * c2[1] - c1[1] * c2[0];
+          if (det === 0) continue;
+
+          const sx = pickM(), sy = pickM();
+          const bx = sx * c1[0] + sy * c2[0];
+          const by = sx * c1[1] + sy * c2[1];
+          if (Math.abs(bx) <= 4.5 && Math.abs(by) <= 4.5) {
+            chC1_10 = c1;
+            chC2_10 = c2;
+            chB_10 = [bx, by];
+            valid = true;
+          }
+        }
+      }
+
+      chX10 = 0;
+      chY10 = 0;
+      chSolved10 = false;
+
+      if (slider10X && slider10Y) {
+        slider10X.value = 0;
+        slider10Y.value = 0;
+        document.getElementById('val10-x').textContent = '0';
+        document.getElementById('val10-y').textContent = '0';
+      }
+
+      document.getElementById('ch10-a11').textContent = chC1_10[0];
+      document.getElementById('ch10-a21').textContent = chC1_10[1];
+      document.getElementById('ch10-a12').textContent = chC2_10[0];
+      document.getElementById('ch10-a22').textContent = chC2_10[1];
+      document.getElementById('ch10-b1').textContent = chB_10[0];
+      document.getElementById('ch10-b2').textContent = chB_10[1];
+
+      const fb = document.getElementById('ch10-feedback');
+      fb.style.display = 'none';
+      document.getElementById('card-canvas-10c').style.borderColor = 'var(--border-color)';
+
+      drawChallenge10();
+    }
+
+    function checkChallenge10() {
+      const curX = chX10 * chC1_10[0] + chY10 * chC2_10[0];
+      const curY = chX10 * chC1_10[1] + chY10 * chC2_10[1];
+      const dist = Math.hypot(curX - chB_10[0], curY - chB_10[1]);
+
+      const fb = document.getElementById('ch10-feedback');
+      const card = document.getElementById('card-canvas-10c');
+      fb.style.display = 'block';
+
+      if (dist < 0.05) {
+        if (!chSolved10) {
+          chSolved10 = true;
+          streak10++;
+          if (streak10 > bestStreak10) bestStreak10 = streak10;
+          document.getElementById('ch10-streak').textContent = streak10;
+          document.getElementById('ch10-best').textContent = bestStreak10;
+        }
+        fb.style.border = '1px solid rgba(16, 185, 129, 0.35)';
+        fb.style.background = 'rgba(16, 185, 129, 0.08)';
+        fb.style.color = '#10b981';
+        fb.textContent = `✓ ¡Exacto! Ax = (${formatNum(curX)}, ${formatNum(curY)}) = b. Pulsa "Nuevo desafío" para continuar.`;
+        card.style.borderColor = 'rgba(16, 185, 129, 0.5)';
+      } else {
+        streak10 = 0;
+        document.getElementById('ch10-streak').textContent = streak10;
+        fb.style.border = '1px solid rgba(240, 101, 101, 0.35)';
+        fb.style.background = 'rgba(240, 101, 101, 0.08)';
+        fb.style.color = '#f06565';
+        fb.textContent = `✕ Aún no: estás en (${formatNum(curX)}, ${formatNum(curY)}) y el objetivo es (${chB_10[0]}, ${chB_10[1]}).`;
+        card.style.borderColor = 'rgba(240, 101, 101, 0.45)';
+      }
+
+      drawChallenge10();
+    }
+
+    function drawChallenge10() {
+      if (!canvas10c || !ctx10c) return;
+      const scale = 42;
+      const { cx, cy } = drawGridAndAxes(ctx10c, scale);
+      const toScr = (vx, vy) => [cx + vx * scale, cy - vy * scale];
+
+      // Columnas base punteadas y objetivo b blanco punteado
+      const [c1x, c1y] = toScr(chC1_10[0], chC1_10[1]);
+      const [c2x, c2y] = toScr(chC2_10[0], chC2_10[1]);
+      const [bx, by] = toScr(chB_10[0], chB_10[1]);
+
+      drawArrowClean2D(ctx10c, cx, cy, c1x, c1y, '#4f7df3', 2, true);
+      drawArrowClean2D(ctx10c, cx, cy, c2x, c2y, '#18c5d9', 2, true);
+      drawArrowClean2D(ctx10c, cx, cy, bx, by, '#ffffff', 2.4, true);
+
+      // Combinación actual x*c1 + y*c2
+      const v1x = chX10 * chC1_10[0], v1y = chX10 * chC1_10[1];
+      const sumX = v1x + chY10 * chC2_10[0];
+      const sumY = v1y + chY10 * chC2_10[1];
+
+      const [p1x, p1y] = toScr(v1x, v1y);
+      const [pSx, pSy] = toScr(sumX, sumY);
+
+      if (Math.abs(chX10) > 0.01) {
+        drawArrowClean2D(ctx10c, cx, cy, p1x, p1y, '#4f7df3', 3, false);
+      }
+      if (Math.abs(chY10) > 0.01) {
+        drawArrowClean2D(ctx10c, p1x, p1y, pSx, pSy, '#18c5d9', 3, false);
+      }
+
+      const dist = Math.hypot(sumX - chB_10[0], sumY - chB_10[1]);
+      const dotColor = dist < 0.05 ? '#10b981' : '#f06565';
+
+      ctx10c.save();
+      ctx10c.shadowColor = dotColor;
+      ctx10c.shadowBlur = 14;
+      ctx10c.fillStyle = dotColor;
+      ctx10c.beginPath();
+      ctx10c.arc(pSx, pSy, 7.5, 0, Math.PI * 2);
+      ctx10c.fill();
+      ctx10c.strokeStyle = '#ffffff';
+      ctx10c.lineWidth = 2;
+      ctx10c.stroke();
+      ctx10c.restore();
+    }
+
+    function initEx10() {
+      updateLearnUI10();
+      renderQuiz10();
+      newChallenge10(true);
+      switchMode10('learn');
+    }
+    
+    
+    // Inicializar y dibujar todas las gráficas al cargar la página
+    window.addEventListener('DOMContentLoaded', () => {
+      updateEx1();
+      updateEx2();
+      updateEx3();
+      drawEx4();
+      setPreset5('A');
+      updateEx6();
+      newRound7();
+      initEx8();
+      initEx9();
+      initEx10();
+    });
   </script>
+  
 </body>
 </html>
